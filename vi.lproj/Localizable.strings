@@ -86,6 +86,7 @@
 "addNewCameraVC.required-camera-name" = "Tên camera không được để rỗng";
 "addNewCameraVC.required-domain" = "Tên miền không được để rỗng";
 "addNewCameraVC.required-channel" = "Kênh không được để rỗng";
+"addNewCameraVC.public-camera" = "Xuất camera";
 
 "mycartbox.add-coupon" = "Thêm mã giảm giá";
 

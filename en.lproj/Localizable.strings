@@ -85,6 +85,7 @@
 "addNewCameraVC.required-camera-name" = "Camera name must not be blank";
 "addNewCameraVC.required-domain" = "Domain must not be blank";
 "addNewCameraVC.required-channel" = "Channel must not be blank";
+"addNewCameraVC.public-camera" = "Public";
 
 "mycartbox.add-coupon" = "Add Coupon";
 

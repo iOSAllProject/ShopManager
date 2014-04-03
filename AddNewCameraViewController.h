@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddNewCameraViewController : UIViewController
+@interface AddNewCameraViewController : UIViewController <UITextFieldDelegate>
 
 @property (unsafe_unretained) id parent;
 @property (assign) BOOL isEdit;
@@ -23,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtChannel;
 @property (strong, nonatomic) IBOutlet UITextField *txtUsername;
 @property (strong, nonatomic) IBOutlet UITextField *txtPassword;
+@property (strong, nonatomic) IBOutlet UILabel *lbPublish;
+@property (strong, nonatomic) IBOutlet UISwitch *mainSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(id)_parent;
 

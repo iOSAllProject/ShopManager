@@ -9,7 +9,9 @@
                 <outlet property="btnCheckBox" destination="vTi-UG-B0C" id="DNL-5P-Cat"/>
                 <outlet property="btnForgotPassword" destination="apZ-6F-ZDu" id="iZb-7R-BgE"/>
                 <outlet property="btnSignIn" destination="n06-s7-daK" id="1cQ-pY-MFm"/>
+                <outlet property="lbPleaseSignIn" destination="v7k-lh-Ony" id="0CW-dS-vJl"/>
                 <outlet property="lbRememberMe" destination="kk4-PJ-u3L" id="3sZ-TQ-pSN"/>
+                <outlet property="lbWelcome" destination="qDv-v9-Dcf" id="Yo9-OX-wC0"/>
                 <outlet property="txtPassword" destination="SZv-3i-BVs" id="lx0-mF-7IF"/>
                 <outlet property="txtUsername" destination="QeW-zt-02h" id="9kB-la-2SF"/>
                 <outlet property="view" destination="1" id="3"/>

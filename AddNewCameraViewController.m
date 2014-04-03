@@ -28,6 +28,11 @@
     return self;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,6 +48,7 @@
     _txtPassword.placeholder    = NSLocalizedString(@"addNewCameraVC.txt-password", nil);
     
     _txtChannel.text = @"1";
+    _lbPublish.text  = NSLocalizedString(@"addNewCameraVC.public-camera", nil);
     
     UIBarButtonItem *btnSave = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"addNewCameraVC.btn-save", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveCamera)];
     self.navigationItem.rightBarButtonItem = btnSave;
@@ -91,6 +97,11 @@
     
     [[(ListCameraViewController*)parent tableView] reloadData];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

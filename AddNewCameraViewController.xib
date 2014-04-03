@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewCameraViewController">
@@ -10,7 +10,9 @@
                 <outlet property="lbChannel" destination="CzA-zV-WVf" id="bw3-Ne-3HL"/>
                 <outlet property="lbDomain" destination="7aI-hY-mbc" id="Uzk-fv-VvH"/>
                 <outlet property="lbPassword" destination="FaN-jq-1Ur" id="QzQ-6G-Y6d"/>
+                <outlet property="lbPublish" destination="Ogm-E0-Eec" id="vH2-Y9-YgP"/>
                 <outlet property="lbUsername" destination="joL-vq-YAc" id="JNc-sc-4cW"/>
+                <outlet property="mainSwitch" destination="M0h-oJ-rwc" id="HjY-x9-3Xz"/>
                 <outlet property="txtCameraName" destination="U16-K6-O7c" id="cPm-Zy-sbA"/>
                 <outlet property="txtChannel" destination="vgU-wk-tLc" id="8xe-Fv-fCF"/>
                 <outlet property="txtDomain" destination="c1u-Ww-cqE" id="ZNK-UQ-lmD"/>
@@ -103,6 +105,16 @@
                                 <outlet property="delegate" destination="-1" id="9I8-ai-KMZ"/>
                             </connections>
                         </textField>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Public:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogm-E0-Eec">
+                            <rect key="frame" x="20" y="244" width="81" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M0h-oJ-rwc">
+                            <rect key="frame" x="109" y="239" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </switch>
                     </subviews>
                 </scrollView>
             </subviews>
