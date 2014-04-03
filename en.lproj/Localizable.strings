@@ -1,0 +1,112 @@
+/* 
+  Localizable.strings
+  ShopManager
+
+  Created by Steven on 3/22/14.
+  Copyright (c) 2014 NhuanQuang. All rights reserved.
+*/
+
+"general.warning" = "Warning!";
+"general.success" = "Successful";
+"general.fail" = "Failed";
+"general.yes"  = "Yes";
+"general.no"   = "No";
+"general.ok" = "OK";
+"general.no-internet" = "No internet connection. Please retry again.";
+"general.add-new.success" = "Add new successful";
+"general.add-new.failed"  = "Add new failed";
+"general.edit.success" = "Update successful";
+"general.edit.failed" = "Update failed";
+"general.error-could-not-open-database" = "Couldn't open database";
+"login.title" = "Login";
+"login.username" = "ID";
+"login.password" = "Password";
+"login.remember" = "Keep me logged in";
+"login.forgot-password" = "Forgot Password?";
+"login.sign-in" = "Sign in";
+"login.signing-in" = "Signing in";
+"login.username.blank" = "Username must not be blank";
+"login.username.wrong-format" = "Username is invalid format. Please input only character and number.";
+"login.password.blank" = "Password must not be blank";
+"login.failed" = "Login failed";
+"login.wrong-username-or-password" = "Username or password is wrong. Please check it again.";
+"login.user-not-existed" = "Your account is not existed or not activated. Please contact support@nhuanquang.com for more detail. Thank you.";
+"login.lb-welcome" = "WELCOME";
+"login.lb-please-sign-in" = "Please sign in to get access";
+"logout.title" = "Log out";
+"logout.message" = "Do you want to log out?";
+"menuViewController.title" = "Menu";
+"menuViewController.order-receipt" = "Order Receipt";
+"menuViewController.camera" = "Camera";
+"menuViewController.push-notification" = "Push Notification";
+"orderViewController.title" = "Orders";
+"orderViewController.no_order_title" = "Didn't find any order";
+"orderViewController.filter_btn_title" = "Filter by";
+"orderViewController.save" = "Save";
+"order_close_btn" = "Close";
+"order_pay_btn" = "Pay";
+"orderViewController_order_notes_btn_title" = "Notes";
+"order_date_label" = "Order Date";
+"order_id_label" = "Order ID";
+"order_status_label" = "Status";
+"order_email_label" = "Email";
+"order_phone_label" = "Phone";
+"order_billing_address_label" = "Billing Address";
+"order_shipping_address_label" = "Shipping Address";
+"order_label_payment_method" = "Payment Method";
+//Also use it in OrderViewController....
+"checkout_label_coupon" = "COUPON";
+"checkout_label_subtotal_without_tax" = "SUBTOTAL (EX. TAX)";
+"checkout_label_subtotal" = "SUBTOTAL";
+"checkout_label_shipping_method_and_cost" = "SHIPPING";
+"checkout_label_tax" = "TAX";
+"checkout_label_discount" = "DISCOUNT";
+"checkout_label_grand_total" = "TOTAL";
+"checkout_label_grand_total_with_include_tax_below_1" = "Includes";
+"checkout_label_grand_total_with_include_tax_below_2" = "Tax";
+
+//OrderNotes View Controller
+"orderNotes_viewController_title" = "Order Notes";
+"orderNotes_viewController_no_notes" = "No notes at this momment";
+
+//camera
+"cameraViewController.title" = "List Cameras";
+"listCameraVC.btn-add-title" = "Add";
+"addNewCameraVC.lb-camera-title" = "Name";
+"addNewCameraVC.lb-domain-title" = "Domain";
+"addNewCameraVC.lb-channel-title" = "Channel";
+"addNewCameraVC.lb-username-title" = "Username";
+"addNewCameraVC.lb-password-title" = "Password";
+"addNewCameraVC.txt-camera-name" = "Camera name";
+"addNewCameraVC.txt-domain" = "Domain we provided";
+"addNewCameraVC.txt-username" = "Camera username";
+"addNewCameraVC.txt-password" = "Camera password";
+"addNewCameraVC.btn-save" = "Save";
+"addNewCameraVC.required-camera-name" = "Camera name must not be blank";
+"addNewCameraVC.required-domain" = "Domain must not be blank";
+"addNewCameraVC.required-channel" = "Channel must not be blank";
+
+"mycartbox.add-coupon" = "Add Coupon";
+
+"addPushNotificationViewController.lb-customer-title" = "Total customer:";
+"addPushNotificationViewController.lb-message-title" = "Your Message";
+"addPushNotificationViewController.lb-more-title" = "Not more than 200 characters";
+"addPushNotificationViewController.btn-select-item" = "Select Item";
+"addPushNotificationViewController.btn-push-message" = "Push Message";
+"addPushNotificationViewController.exceed-characters" = "Exceed maximum characters.";
+"addPushNotificationViewController.push-notification-success" = "Your message is pushed to all customer successfully";
+"tabb_bar_browse" = "Browse";
+"browse_view_open_camera_btn" = "Scanner";
+// Pop Over
+"popover_view_title" = "Sub";
+//Browse Detail Controller
+"browse_view_select_sub_category" = "Select Sub Category";
+"browse_view_load_more" = "Load More";
+"browse_view_pull_to_refresh" = "Pull to refresh";
+"browse_view_release_to_refresh" = "Release to refresh";
+"browse_view_no_product_found" = "No products found which match your selection";
+
+"myCartBox_exclude_tax_title" = "(Exclude Tax)";
+"orderViewController.btn-update-title" = "Update";
+"orderViewController.update-status-successful" = "Update order status successfully";
+"orderViewController.update-status-fail" = "Update order status fail";

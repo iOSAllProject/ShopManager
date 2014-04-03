@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>English</key>
+	<array>
+		<dict>
+			<key>general.warning</key>
+			<string>Warning!</string>
+			<key>general.success</key>
+			<string>Successful</string>
+			<key>general.fail</key>
+			<string>Failed</string>
+			<key>general.yes</key>
+			<string>Yes</string>
+			<key>general.no</key>
+			<string>No</string>
+			<key>general.ok</key>
+			<string>OK</string>
+			<key>general.add-new.success</key>
+			<string>Add new successful</string>
+			<key>general.add-new.failed</key>
+			<string>Add new failed</string>
+			<key>general.edit.success</key>
+			<string>Update successful</string>
+			<key>general.edit.failed</key>
+			<string>Update failed</string>
+			<key>general.error-could-not-open-database</key>
+			<string>Couldn&apos;t open database</string>
+			<key>login.title</key>
+			<string>Login</string>
+			<key>login.username</key>
+			<string>ID</string>
+			<key>login.password</key>
+			<string>Password</string>
+			<key>login.remember</key>
+			<string>Keep me logged in</string>
+			<key>login.forgot-password</key>
+			<string>Forgot Password?</string>
+			<key>login.sign-in</key>
+			<string>Sign in</string>
+			<key>login.signing-in</key>
+			<string>Signing in</string>
+			<key>login.username.blank</key>
+			<string>Username must not be blank</string>
+			<key>login.username.wrong-format</key>
+			<string>Username is invalid format. Please input only character and number.</string>
+			<key>login.password.blank</key>
+			<string>Password must not be blank</string>
+			<key>logout.title</key>
+			<string>Log out</string>
+			<key>logout.message</key>
+			<string>Do you want to log out?</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  ShopManager
+
+  Created by Steven on 3/22/14.
+  Copyright (c) 2014 NhuanQuang. All rights reserved.
+*/
+
+"general.warning" = "Cảnh báo!";
+"general.success" = "Thành công";
+"general.fail" = "Thất bại";
+"general.yes"  = "Có";
+"general.no"   = "Không";
+"general.ok" = "OK";
+"general.add-new.success" = "Thêm mới thành công";
+"general.add-new.failed"  = "Thêm mới thất bại";
+"general.edit.success" = "Cập nhật thành công";
+"general.edit.failed" = "Cập nhật thất bại";
+"general.error-could-not-open-database" = "Không thể mở cơ sở dữ liệu";
+"login.title" = "Đăng nhập";
+"login.username" = "ID";
+"login.password" = "Mật khẩu";
+"login.remember" = "Ghi nhớ";
+"login.forgot-password" = "Quên mật khẩu?";
+"login.sign-in" = "Đăng nhập";
+"login.signing-in" = "Đang đăng nhập";
+"login.username.blank" = "Tên đăng nhập không được để trống";
+"login.username.wrong-format" = "Tên đăng nhập không đúng định dạng. Vui lòng chỉ nhập chữ cái và số.";
+"login.password.blank" = "Mật khẩu không được để trống";
+"login.failed" = "Đăng nhập thất bại";
+"login.wrong-username-or-password" = "Tên đăng nhập hay mật khẩu không đúng. Vui lòng thử lại.";
+"login.user-not-existed" = "Tài khoản của bạn chưa tồn tại hoặc chưa được kích hoạt. Vui lòng liên lạc support@nhuanquang.com để biết thêm chi tiết. Xin cảm ơn.";
+"login.lb-welcome" = "XIN CHÀO";
+"login.lb-please-sign-in" = "Vui lòng đăng nhập để truy cập";
+"logout.title" = "Đăng xuất";
+"logout.message" = "Bạn có muốn đăng xuất không?";
+"menuViewController.title" = "Menu";
+"menuViewController.order-receipt" = "Đơn hàng";
+"menuViewController.camera" = "Camera";
+"menuViewController.push-notification" = "Thông báo";
+"orderViewController.title" = "Đơn hàng";
+"orderViewController.no_order_title" = "Không có đơn hàng nào";
+"orderViewController.filter_btn_title" = "Lọc theo";
+"orderViewController.save" = "Lưu";
+"order_close_btn" = "Đóng";
+"order_pay_btn" = "Trả";
+"orderViewController_order_notes_btn_title" = "Lưu ý";
+
+"order_date_label" = "Ngày đặt hàng";
+"order_id_label" = "Mã đơn hàng";
+"order_status_label" = "Tình trạng";
+"order_email_label" = "Email";
+"order_phone_label" = "Số điện thoại";
+"order_billing_address_label" = "Địa chỉ thanh toán";
+"order_shipping_address_label" = "Địa chỉ nhận";
+"order_label_payment_method" = "Phương thức thanh toán";
+
+//Also use it in OrderViewController....
+"checkout_label_coupon" = "COUPON";
+"checkout_label_subtotal_without_tax" = "TỔNG TIỀN (chưa tính thuế)";
+"checkout_label_subtotal" = "TỔNG TIỀN";
+"checkout_label_shipping_method_and_cost" = "VẬN CHUYỂN";
+"checkout_label_tax" = "THUẾ";
+"checkout_label_discount" = "GIẢM";
+"checkout_label_grand_total" = "TỔNG CỘNG";
+"checkout_label_grand_total_with_include_tax_below_1" = "Bao gồm";
+"checkout_label_grand_total_with_include_tax_below_2" = "Thuế";
+
+//OrderNotes View Controller
+"orderNotes_viewController_title" = "Lưu ý đơn hàng";
+"orderNotes_viewController_no_notes" = "Không có bất kỳ lưu ý nào.";
+
+//camera
+"cameraViewController.title" = "Danh sách camera";
+"listCameraVC.btn-add-title" = "Thêm";
+"addNewCameraVC.lb-camera-title" = "Tên";
+"addNewCameraVC.lb-domain-title" = "Tên miền";
+"addNewCameraVC.lb-channel-title" = "Kênh";
+"addNewCameraVC.lb-username-title" = "Tài khoản";
+"addNewCameraVC.lb-password-title" = "Mật khẩu";
+"addNewCameraVC.txt-camera-name" = "Tên camera";
+"addNewCameraVC.txt-domain" = "Tên miền chúng tôi cung cấp";
+"addNewCameraVC.txt-username" = "Tên đăng nhập camera";
+"addNewCameraVC.txt-password" = "Mật khẩu đăng nhập camera";
+"addNewCameraVC.btn-save" = "Save";
+"addNewCameraVC.required-camera-name" = "Tên camera không được để rỗng";
+"addNewCameraVC.required-domain" = "Tên miền không được để rỗng";
+"addNewCameraVC.required-channel" = "Kênh không được để rỗng";
+
+"mycartbox.add-coupon" = "Thêm mã giảm giá";
+
+"addPushNotificationViewController.lb-customer-title" = "Tổng số khách hàng:";
+"addPushNotificationViewController.lb-message-title" = "Thông báo của bạn";
+"addPushNotificationViewController.lb-more-title" = "Không quá 200 ký tự";
+"addPushNotificationViewController.btn-select-item" = "Chọn sản phẩm";
+"addPushNotificationViewController.btn-push-message" = "Đẩy thông báo";
+"addPushNotificationViewController.exceed-characters" = "Vượt quá số ký tự tối đa cho phép.";
+"addPushNotificationViewController.push-notification-success" = "Thông báo của bạn đã được gửi đến tất cả khách hàng thành công";
+
+"tabb_bar_browse" = "Tìm";
+"browse_view_open_camera_btn" = "Quét";
+// Pop Over
+"popover_view_title" = "Mục con";
+//Browse Detail Controller
+"browse_view_select_sub_category" = "Chọn mục con";
+"browse_view_load_more" = "Tải thêm";
+"browse_view_pull_to_refresh" = "Kéo để cập nhật";
+"browse_view_release_to_refresh" = "Thả để cập nhật";
+"browse_view_no_product_found" = "Không tìm thấy sản phẩm bạn yêu cầu.";
+
+"myCartBox_exclude_tax_title" = "(Chưa thuế)";
+"orderViewController.btn-update-title" = "Cập nhật";
+"orderViewController.update-status-successful" = "Cập nhật tình trạng đơn hàng thành công";
+"orderViewController.update-status-fail" = "Cập nhật tình trạng đơn hàng thất bại";

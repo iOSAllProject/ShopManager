@@ -1,0 +1,84 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+//define status network,get hostname use in Reachibilit
+typedef enum {
+	NotReachable = 0,
+	ReachableViaWiFi,
+	ReachableViaWWAN
+} NetworkStatus;
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "AppDelegate.h"
+    #import <QuartzCore/QuartzCore.h>
+    #import "RegexKitLite.h"
+    #import "SBJson.h"
+    #import "RNCryptor+Private.h"
+    #import "RNDecryptor.h"
+    #import "RNEncryptor.h"
+    #import "MBProgressHUD.h"
+    #import "DeviceClass.h"
+    #import "ToolClass.h"
+    #import "SettingDataClass.h"
+    #import "MyOrderClass.h"
+    #import "MyCartClass.h"
+    #import "FPPopoverController.h"
+    #import "ASIHTTPRequest.h"
+    #import "ASIFormDataRequest.h"
+    #import "Reachability.h"
+    #import "UserDataTapGestureRecognizer.h"
+    #import "SDImageCache.h"
+    #import "UIImageView+WebCache.h"
+    #import "DataService.h"
+    #import "TTTAttributedLabel.h"
+    #import "MiscInstances.h"
+    #import "TriangleDropDown.h"
+    #import "DLStarRatingControl.h"
+    #import "NUIAppearance.h"
+    #import "UINavigationBar+NUI.h"
+//    #import "SimpleNotificationView.h"
+//    #import "UIButton+NUI.h"
+//    #import "UILabel+NUI.h"
+//    #import "UITextField+NUI.h"
+    #import "UIBarButtonItem+NUI.h"
+#endif
+
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+
+#define SYSTEM_VERSION_RUN_IOS7_LATER                 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+
+#define BOLDFONT @"Helvetica"
+#define PRIMARYFONT @"HelveticaNeue-Light"
+
+//#define APPLE_BLUE_COLOR [UIColor colorWithRed:(float)30/255 green:(float)106/255 blue:(float)255/255 alpha:1.0]
+#define APPLE_BLUE_COLOR [UIColor colorWithRed:(float)141/255 green:(float)198/255 blue:(float)65/255 alpha:1.0]
+
+enum {
+    kStatusTag = 1000
+};
+
+#define CURRENT_LANGUAGE        @"CurrentLanguage"
+#define CURRENT_LANGUAGE_DICT   @"CurrentLanguageDict"
+#define USERNAME_AUTHORIZE_COUCHDB    @"UsernameAuthorizeCouchDB"
+#define PASSWORD_AUTHORIZE_COUCHDB    @"PasswordAuthorizeCouchDB"
+
+#define USERNAME @"Username"
+#define PASSWORD @"Password"
+
+#define IS_REMEMBER @"isRemember"
+
+#define CAMERA_LIST @"CameraList"
+
+//WooCommerce Product Per load @ Effect in BrowseDetailController
+#define WOO_PRODUCT_PERPAGE @"10" //How much will load per query
