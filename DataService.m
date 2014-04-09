@@ -24,20 +24,31 @@
 //    [[UserAuth instance] checkUserAlreadyLogged];
     [self getSettings]; // load all settings
 //    [self getLeftMenuData];
-    [self getProductCategories]; // Get product categories in browse
-    [self getProductCategoriesCustom];
+//    [self getProductCategories]; // Get product categories in browse
+//    [self getProductCategoriesCustom];
 //    [self getCountries]; // load all countries start
 //    [self getHomePageApi];
 //    [self getFeaturedProducts]; //load all featured products
 //    [self getRandomProducts];
-    [self getRecentItems];
+//    [self getRecentItems];
 //    [self pushNotificationApi];
     
+//    dispatch_queue_t queue1 = dispatch_queue_create("com.myqgs.getSettings", NULL);
+    dispatch_queue_t queue2 = dispatch_queue_create("com.myqgs.getProductCategories", NULL);
+    dispatch_queue_t queue3 = dispatch_queue_create("com.myqgs.getProductCategoriesCustom", NULL);
+    dispatch_queue_t queue4 = dispatch_queue_create("com.myqgs.getRecentItems", NULL);
+    dispatch_group_t group = dispatch_group_create();
+//    dispatch_group_async(group, queue1, ^{ [self getSettings]; });
+    dispatch_group_async(group, queue2, ^{ [self getProductCategories]; });
+    dispatch_group_async(group, queue3, ^{ [self getProductCategoriesCustom]; });
+    dispatch_group_async(group, queue4, ^{ [self getRecentItems]; });
+    
     #if !TARGET_IPHONE_SIMULATOR
-    
-    //will save device ID if registered.. ignore
-    [self deviceIDSend:[[DeviceClass instance] getUUID] device:[[DeviceClass instance] getDeviceModel]];
-    
+    dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.deviceIDSend", NULL);
+    dispatch_async(queue, ^(void) {
+        //will save device ID if registered.. ignore
+        [self deviceIDSend:[[DeviceClass instance] getUUID] device:[[DeviceClass instance] getDeviceModel]];
+    });
     
     #endif
     [self checkConnectivity];

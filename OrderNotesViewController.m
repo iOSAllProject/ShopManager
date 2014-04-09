@@ -67,7 +67,7 @@
         
     }
     }
-    [scroller layoutWithSpeed:0.3 completion:nil];
+    [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
 }
 
 

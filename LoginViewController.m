@@ -30,34 +30,40 @@
     
     self.navigationController.navigationBarHidden = YES;
     
+    _btnForgotPassword.hidden = YES;
+    
     // Do any additional setup after loading the view from its nib.
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     dictLanguage = [delegate.arrayLanguage objectAtIndex:0];
     
     //set title by language key for labels and button
-    _txtUsername.placeholder = NSLocalizedString(@"login.username", nil);
-    _txtPassword.placeholder = NSLocalizedString(@"login.password", nil);
+//    _txtUsername.placeholder = NSLocalizedString(@"login.username", nil);
+//    _txtPassword.placeholder = NSLocalizedString(@"login.password", nil);
     _lbRememberMe.text  = NSLocalizedString(@"login.remember", nil);
     [_btnForgotPassword setTitle:NSLocalizedString(@"login.forgot-password", nil) forState:UIControlStateNormal];
     [_btnSignIn setTitle:NSLocalizedString(@"login.sign-in", nil) forState:UIControlStateNormal];
     
+    UIColor *color = [UIColor lightTextColor];
+    _txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"login.username", nil) attributes:@{NSForegroundColorAttributeName: color}];
+    _txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"login.password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+    
     //set border for text field
-    _txtUsername.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _txtUsername.layer.borderWidth = 1;
+    _txtUsername.textColor = [UIColor whiteColor];
+    _txtUsername.backgroundColor   = [UIColor blackColor];
+    _txtUsername.layer.borderColor = [UIColor whiteColor].CGColor;
+    _txtUsername.layer.borderWidth = 0.5;
+    _txtUsername.layer.cornerRadius = 3;
     
-    _txtPassword.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _txtPassword.layer.borderWidth = 1;
-    
-    //add 2 icon: user and lock to textfield
-    UIImageView *imgUserView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_user.png"]];
+    _txtPassword.textColor = [UIColor whiteColor];
+    _txtPassword.backgroundColor   = [UIColor blackColor];
+    _txtPassword.layer.borderColor = [UIColor whiteColor].CGColor;
+    _txtPassword.layer.borderWidth = 0.5;
+    _txtPassword.layer.cornerRadius = 3;
     
     UIImageView *imgLockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock.png"]];
     
-    [_txtUsername setLeftViewMode:UITextFieldViewModeAlways];
-    _txtUsername.leftView = imgUserView;
-    
-    [_txtPassword setLeftViewMode:UITextFieldViewModeAlways];
-    _txtPassword.leftView = imgLockView;
+    [_txtPassword setRightViewMode:UITextFieldViewModeAlways];
+    _txtPassword.rightView = imgLockView;
     
     //set background for Sign in button
     _btnSignIn.layer.cornerRadius = 5;
@@ -84,6 +90,11 @@
         _txtUsername.text = [[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:USERNAME]];
         _txtPassword.text = [[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:PASSWORD]];
     }
+    
+    //disable NUI
+    [_lbWelcome setNuiIsApplied:@0];
+    [_lbPleaseSignIn setNuiIsApplied:@0];
+    [_lbRememberMe setNuiIsApplied:@0];
 }
 
 - (IBAction)tapCheckBox:(id)sender {
@@ -258,6 +269,14 @@
         [self tapSignIn:nil];
     }
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.layer.borderColor = APPLE_BLUE_COLOR.CGColor;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    textField.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (BOOL)prefersStatusBarHidden

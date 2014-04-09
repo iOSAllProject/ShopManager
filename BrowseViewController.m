@@ -47,8 +47,6 @@
     [searchLayer setNuiClass:@"SearchBarTintView"];
     searchLayer.userInteractionEnabled = NO;
     searchLayer.multipleTouchEnabled = NO;
-    
-    
     [self.view addSubview:searchLayer];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
@@ -65,18 +63,18 @@
         aryDic = [DataService instance].productCategoriesCustom;
     }
     
-    UIButton *qrcode = [UIButton buttonWithType:UIButtonTypeCustom];
-    qrcode.frame = CGRectMake(self.view.frame.size.width - 69, 8, 63, 30);
-    qrcode.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
-    [qrcode setTitle:NSLocalizedString(@"browse_view_open_camera_btn", nil)  forState:UIControlStateNormal];
-    [qrcode addTarget:self action:@selector(qrCodeAction) forControlEvents:UIControlEventTouchDown];
-    
-    [qrcode setNuiClass:@"UiBarButtonItem"];
-    [qrcode.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [qrcode setTitleColor:APPLE_BLUE_COLOR forState:UIControlStateNormal];
-    
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:qrcode];
-    self.navigationItem.rightBarButtonItem = button;
+//    UIButton *qrcode = [UIButton buttonWithType:UIButtonTypeCustom];
+//    qrcode.frame = CGRectMake(self.view.frame.size.width - 69, 8, 63, 30);
+//    qrcode.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+//    [qrcode setTitle:NSLocalizedString(@"browse_view_open_camera_btn", nil)  forState:UIControlStateNormal];
+//    [qrcode addTarget:self action:@selector(qrCodeAction) forControlEvents:UIControlEventTouchDown];
+//    
+//    [qrcode setNuiClass:@"UiBarButtonItem"];
+//    [qrcode.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+//    [qrcode setTitleColor:APPLE_BLUE_COLOR forState:UIControlStateNormal];
+//    
+//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:qrcode];
+//    self.navigationItem.rightBarButtonItem = button;
 }
 
 -(void)qrCodeAction{
@@ -187,6 +185,7 @@
     NSLog(@"Start Search");
     tblView.scrollEnabled = NO;
     searchLayer.hidden = NO;
+    
 //    UIImage *blurImage = [[[ToolClass instance] ChangeViewToImage:self.view] stackBlur:3];
 //    UIImage *newBlurImage = [[ToolClass instance] cropRect:CGRectMake(0, 40, blurImage.size.width, blurImage.size.height-40) source:blurImage];
 //    blurView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, newBlurImage.size.width, newBlurImage.size.height)];

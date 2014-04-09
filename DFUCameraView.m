@@ -67,6 +67,9 @@
 	} else {
 		lastFrameTime = LERP(frameTime, lastFrameTime, 0.8);
 	}
+    
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [MBProgressHUD hideAllHUDsForView:delegate.window.rootViewController.view animated:YES];
 }
 
 - (void)dealloc

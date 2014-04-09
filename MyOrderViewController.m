@@ -53,7 +53,7 @@
     
     btnFilter = [UIButton buttonWithType:UIButtonTypeCustom];
     btnFilter.frame = CGRectMake(self.view.frame.size.width - 69, 8, 100, 30);
-    [btnFilter setTitleColor:APPLE_BLUE_COLOR forState:UIControlStateNormal];
+//    [btnFilter setTitleColor:APPLE_BLUE_COLOR forState:UIControlStateNormal];
 
     btnFilter.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [btnFilter setTitle:NSLocalizedString(@"orderViewController.filter_btn_title", nil) forState:UIControlStateNormal];
@@ -62,15 +62,16 @@
        forControlEvents:UIControlEventTouchDown];
     [btnFilter setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -50)];
     
-    [btnFilter setNuiClass:@"UiBarButtonItem"];
-//    [filter.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:btnFilter];
-    
-    
-//    btnFilter = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"orderViewController.filter_btn_title", nil) style:UIBarButtonItemStylePlain target:self action:@selector(filterAction)];
 
     self.navigationItem.rightBarButtonItem = button;
+    
+    //add indicator view
+    myActivityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    myActivityView.frame = CGRectMake(self.view.size.width/2-10, self.view.size.height/2-10, 25, 25);
+    myActivityView.hidesWhenStopped = YES;
+    [self.view addSubview:myActivityView];
+    [myActivityView startAnimating];
 }
 
 - (void) listOrder {
@@ -78,9 +79,10 @@
     dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.get-list-order", NULL);
     dispatch_async(queue, ^(void) {
         [self getListOfMyOrderByFilter:@"All"];
-        
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             [self setOrderView];
+            
+            [myActivityView stopAnimating];
         });
     });
 }
@@ -146,7 +148,7 @@
     
     dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.select-filter", NULL);
     dispatch_async(queue, ^(void) {
-        NSDictionary *getListOfMyOrder = [self getListOfMyOrderByFilter:[chooseData objectForKey:@"status_label"]];
+        NSDictionary *getListOfMyOrder = [self getListOfMyOrderByFilter:[chooseData objectForKey:@"status_slug"]];
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             [[MyOrderClass instance] setListOfMyOrder:getListOfMyOrder];
@@ -182,13 +184,30 @@
                 }
             }
             
-            [scroller layoutWithSpeed:0.3 completion:nil];
+            [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
         });
     });
 }
 
 
 -(void)order_box:(NSString*)orderNo status:(NSString*)status orderDate:(NSString*)orderDate price:(NSString*)totalPrice orderInfo:(NSDictionary*)orderInfo{
+    
+    if ([status isEqualToString:@"All"])
+        status = NSLocalizedString(@"status_list.all", nil);
+    else if ([status isEqualToString:@"pending"])
+        status = NSLocalizedString(@"status_list.pending", nil);
+    else if ([status isEqualToString:@"failed"])
+        status = NSLocalizedString(@"status_list.failed", nil);
+    else if ([status isEqualToString:@"on-hold"])
+        status = NSLocalizedString(@"status_list.on-hold", nil);
+    else if ([status isEqualToString:@"processing"])
+        status = NSLocalizedString(@"status_list.processing", nil);
+    else if ([status isEqualToString:@"completed"])
+        status = NSLocalizedString(@"status_list.completed", nil);
+    else if ([status isEqualToString:@"refunded"])
+        status = NSLocalizedString(@"status_list.refunded", nil);
+    else if ([status isEqualToString:@"cancelled"])
+        status = NSLocalizedString(@"status_list.cancelled", nil);
     
     MGTableBoxStyled *section = MGTableBoxStyled.box;
     section.margin = UIEdgeInsetsMake(10.0, 10.0, 0.0, 0.0);
@@ -210,15 +229,11 @@
     
     section.onTap = ^{
         [[MyOrderClass instance] setMyOrder:orderInfo];
-//
-//        //[[MainViewClass instance] openOrderViewController];
         OrderViewController *order = [[OrderViewController alloc] init];
         order.parent = self;
         [order noCloseBtn];
         [self.navigationController pushViewController:order animated:YES];
-        
     };
-    
 }
 
 

@@ -206,7 +206,7 @@
             {
             [self loadMore];
             }
-             [scroller layoutWithSpeed:0.3 completion:nil];
+             [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
             processing = NO;
             
             if([type isEqualToString:@"pagination"])
@@ -331,7 +331,7 @@
             {
                 [self loadMore];
             }
-            [scroller layoutWithSpeed:0.3 completion:nil];
+            [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
             processing = NO;
             
             if([type isEqualToString:@"pagination"])

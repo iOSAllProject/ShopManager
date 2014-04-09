@@ -33,6 +33,7 @@
     self.navigationController.navigationBarHidden = YES;
     
 //    self.navigationController.navigationItem.title = NSLocalizedString(@"menuViewController.title", Nil);
+    [self.view setNuiIsApplied:@0];
     
     if (![[DeviceClass instance] getDevice] == IPHONE_5) {
         _lbUsername.frame = CGRectMake(_lbUsername.frame.origin.x, _lbUsername.frame.origin.y-85, _lbUsername.frame.size.width, _lbUsername.frame.size.height);
@@ -47,8 +48,10 @@
     //get banner attachment
     NSDictionary *accountDict = [[AppDelegate instance] getAccountDict];
     
-    NSString *imageUrl = [NSString stringWithFormat:@"%@:5984/business/%@/logo.png",[[AppDelegate instance] getMainURL],[accountDict objectForKey:@"_id"]];
-    [_bannerImageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+//    NSString *imageUrl = [NSString stringWithFormat:@"%@:5984/business/%@/logo.png",[[AppDelegate instance] getMainURL],[accountDict objectForKey:@"_id"]];
+//    [_bannerImageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+    [_bannerImageView setImage:[UIImage imageNamed:@"logo.png"]];
+    [_bannerImageView setNuiIsApplied:@0];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

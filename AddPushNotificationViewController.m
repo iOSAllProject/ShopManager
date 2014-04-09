@@ -36,6 +36,8 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = NO;
+    
+    self.navigationItem.title = NSLocalizedString(@"menuViewController.push-notification", Nil);
     // Do any additional setup after loading the view from its nib.
     _lbCustomerTitle.text = NSLocalizedString(@"addPushNotificationViewController.lb-customer-title", nil);
     _lbMessageTitle.text  = NSLocalizedString(@"addPushNotificationViewController.lb-message-title", nil);
@@ -73,6 +75,27 @@
     [_mainScrollView setContentSize:CGSizeMake(320, 568)];
     
     _lbNumberCharacter.text = [NSString stringWithFormat:@"%d",MAX_CHARACTER];
+    
+    [self getTotalSubscriber];
+}
+
+- (void) getTotalSubscriber {
+    dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.getTotalSubscriber", NULL);
+    dispatch_async(queue, ^(void) {
+        NSString *urlStr = [NSString stringWithFormat:@"%@/?candycart=json-api&type=get-all-subscribers",[[AppDelegate instance] getDatabaseURL]];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+        [request startSynchronous];
+        NSError *error = [request error];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            if (!error) {
+                NSString *responseStr = [request responseString];
+                NSMutableArray *allSubscriber = [[responseStr JSONValue] objectForKey:@"all_subscribers"];
+                if (allSubscriber != nil) {
+                    _lbNumberCustomer.text = [NSString stringWithFormat:@"%d",[allSubscriber count]];
+                }
+            }
+        });
+    });
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -95,7 +118,7 @@
 
 - (IBAction)pushMessageAction:(id)sender {
     if ([_txtMessage.text isEqualToString:@""]) {
-        UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"pushNotificationViewController.message-empty", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
+        UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"addPushNotificationViewController.message-empty", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
         [dialog show];
         return;
     }
@@ -110,7 +133,9 @@
         [request addPostValue:_txtMessage.text forKey:@"message"];
         [request addPostValue:[currentProductInfo objectForKey:@"product_ID"] forKey:@"product_id"];
         
+        request.timeOutSeconds = 30;
         [request startSynchronous];
+
         NSError *error = [request error];
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -140,7 +165,7 @@
         // Return FALSE so that the final '\n' character doesn't get added
         return FALSE;
     }
-    if(textView.text.length > MAX_CHARACTER && ![text isEqualToString:@""]){
+    if(textView.text.length >= MAX_CHARACTER && ![text isEqualToString:@""]){
         UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"addPushNotificationViewController.exceed-characters", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
         [dialog show];
         return FALSE;

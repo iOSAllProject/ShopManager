@@ -81,7 +81,7 @@
     }
     
     if (!isEdit) {
-        NSMutableDictionary *tmpCameraDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_txtCameraName.text,@"cameraName",_txtDomain.text,@"domain",_txtChannel.text,@"channel",_txtUsername.text,@"username",_txtPassword.text,@"password", nil];
+        NSMutableDictionary *tmpCameraDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_txtCameraName.text,@"cameraName",_txtDomain.text,@"domain",_txtChannel.text,@"channel",_txtUsername.text,@"username",_txtPassword.text,@"password",[NSNumber numberWithInt:_mainSwitch.on],@"isCameraPublic", nil];
         [[(ListCameraViewController*)parent mainArray] addObject:tmpCameraDict];
     }
     else {
@@ -90,10 +90,39 @@
         [cameraDict setObject:_txtChannel.text forKey:@"channel"];
         [cameraDict setObject:_txtUsername.text forKey:@"username"];
         [cameraDict setObject:_txtPassword.text forKey:@"password"];
+        [cameraDict setObject:[NSNumber numberWithInt:_mainSwitch.on] forKey:@"isCameraPublic"];
     }
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[(ListCameraViewController*)parent mainArray] forKey:CAMERA_LIST];
+    
+    //save camera list to server
+    //get database URL of user by email or username
+//    NSString *decryptedUsername = [[AppDelegate instance] getDecryptedData:[[AppDelegate instance] getUsernameAuthorizeCouchDB]];
+//    NSString *decryptedPassword = [[AppDelegate instance] getDecryptedData:[[AppDelegate instance] getPasswordAuthorizeCouchDB]];
+//    
+//    NSString *urlStr = [NSString stringWithFormat:@"%@:3001/set_camera",[[AppDelegate instance] getMainURL]];
+//    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//    request.requestMethod = @"POST";
+//    request.username = decryptedUsername;
+//    request.password = decryptedPassword;
+//    
+//    NSString *cameraListData = [[(ListCameraViewController*)parent mainArray] JSONRepresentation];
+//    //omit [ ]
+//    cameraListData = [cameraListData stringByReplacingOccurrencesOfString:@"[" withString:@""];
+//    cameraListData = [cameraListData stringByReplacingOccurrencesOfString:@"]" withString:@""];
+//    
+//    NSLog(@"camera = %@",cameraListData);
+//    
+//    [request addPostValue:[[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:USERNAME]] forKey:@"user"];
+//    [request addPostValue:cameraListData forKey:@"camera"];
+//    
+//    [request startSynchronous];
+//    NSError *error = [request error];
+//    NSLog(@"error  = %@",error);
+//    if (!error) {
+//
+//    }
     
     [[(ListCameraViewController*)parent tableView] reloadData];
     [self.navigationController popViewControllerAnimated:YES];

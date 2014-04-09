@@ -22,6 +22,7 @@
     MBProgressHUD *HUD;
     UIButton *btnFilter;
     FPPopoverController *popover;
+    UIActivityIndicatorView *myActivityView;
 }
 
 - (void) listOrder;

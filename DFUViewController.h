@@ -17,5 +17,6 @@
 }
 
 @property (strong,nonatomic) NSMutableArray *cameraArray;
+@property (assign) int cameraIndex;
 
 @end

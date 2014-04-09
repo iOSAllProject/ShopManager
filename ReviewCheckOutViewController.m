@@ -46,7 +46,7 @@
     [self totalBox];
     [self totalPrice];
     [self setPaymentMethod];
-    [scroller layoutWithSpeed:0.3 completion:nil];
+    [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
     
     already_choose_payment_method = NO;
     
@@ -457,13 +457,12 @@
     
     [scroller.boxes removeObjectAtIndex:[scroller.boxes count]-1];
     
-    [scroller layoutWithSpeed:0.3 completion:nil];
+    [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
 }
 
 
 -(void)shortDesc:(NSString*)desc
 {
-    
     MGTableBoxStyled *section = MGTableBoxStyled.box;
     [scroller.boxes addObject:section];
     section.margin = UIEdgeInsetsMake(10.0, 10.0, 0.0, 0.0);

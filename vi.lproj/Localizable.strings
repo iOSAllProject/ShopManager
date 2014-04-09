@@ -86,17 +86,18 @@
 "addNewCameraVC.required-camera-name" = "Tên camera không được để rỗng";
 "addNewCameraVC.required-domain" = "Tên miền không được để rỗng";
 "addNewCameraVC.required-channel" = "Kênh không được để rỗng";
-"addNewCameraVC.public-camera" = "Xuất camera";
+"addNewCameraVC.public-camera" = "Xuất ra";
 
 "mycartbox.add-coupon" = "Thêm mã giảm giá";
 
-"addPushNotificationViewController.lb-customer-title" = "Tổng số khách hàng:";
+"addPushNotificationViewController.lb-customer-title" = "Tổng số đăng ký:";
 "addPushNotificationViewController.lb-message-title" = "Thông báo của bạn";
 "addPushNotificationViewController.lb-more-title" = "Không quá 200 ký tự";
 "addPushNotificationViewController.btn-select-item" = "Chọn sản phẩm";
 "addPushNotificationViewController.btn-push-message" = "Đẩy thông báo";
 "addPushNotificationViewController.exceed-characters" = "Vượt quá số ký tự tối đa cho phép.";
 "addPushNotificationViewController.push-notification-success" = "Thông báo của bạn đã được gửi đến tất cả khách hàng thành công";
+"addPushNotificationViewController.message-empty" = "Vui lòng nhập thông báo của bạn";
 
 "tabb_bar_browse" = "Tìm";
 "browse_view_open_camera_btn" = "Quét";
@@ -113,3 +114,12 @@
 "orderViewController.btn-update-title" = "Cập nhật";
 "orderViewController.update-status-successful" = "Cập nhật tình trạng đơn hàng thành công";
 "orderViewController.update-status-fail" = "Cập nhật tình trạng đơn hàng thất bại";
+
+"status_list.all" = "Tất cả";
+"status_list.pending" = "Chờ xử lý";
+"status_list.failed"  = "Thất bại";
+"status_list.on-hold" = "Chờ chuyển khoản";
+"status_list.processing" = "Đang xử lý";
+"status_list.completed"  = "Hoàn tất";
+"status_list.refunded"   = "Hoàn trả";
+"status_list.cancelled"  = "Huỷ";

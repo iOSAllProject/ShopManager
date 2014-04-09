@@ -3,8 +3,8 @@
 @BOLDFONT: Helvetica;
 
 //PRIMARY APP COLOR
-@PRIMARYCOLOR:#1e6aff; //Effect Navigation Bar & Button Color & TableViewSelected
-@PRIMARYCOLOR_BOLD:#0a53e3; //Effect UIBarButtonItem
+@PRIMARYCOLOR:#8dc641; //Effect Navigation Bar & Button Color & TableViewSelected
+@PRIMARYCOLOR_BOLD:#69ab10; //Effect UIBarButtonItem
 @OTHER_COLOR:#ffffff;
 @OTHER_COLOR_2:#cccccc; //Use in search background
 

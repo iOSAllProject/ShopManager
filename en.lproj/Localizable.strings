@@ -89,13 +89,14 @@
 
 "mycartbox.add-coupon" = "Add Coupon";
 
-"addPushNotificationViewController.lb-customer-title" = "Total customer:";
+"addPushNotificationViewController.lb-customer-title" = "Total Subscriber:";
 "addPushNotificationViewController.lb-message-title" = "Your Message";
 "addPushNotificationViewController.lb-more-title" = "Not more than 200 characters";
 "addPushNotificationViewController.btn-select-item" = "Select Item";
 "addPushNotificationViewController.btn-push-message" = "Push Message";
 "addPushNotificationViewController.exceed-characters" = "Exceed maximum characters.";
 "addPushNotificationViewController.push-notification-success" = "Your message is pushed to all customer successfully";
+"addPushNotificationViewController.message-empty" = "Please input your message";
 "tabb_bar_browse" = "Browse";
 "browse_view_open_camera_btn" = "Scanner";
 // Pop Over
@@ -111,3 +112,12 @@
 "orderViewController.btn-update-title" = "Update";
 "orderViewController.update-status-successful" = "Update order status successfully";
 "orderViewController.update-status-fail" = "Update order status fail";
+
+"status_list.all" = "All";
+"status_list.pending" = "Pending";
+"status_list.failed"  = "Failed";
+"status_list.on-hold" = "On-hold";
+"status_list.processing" = "Processing";
+"status_list.completed"  = "Completed";
+"status_list.refunded"   = "Refunded";
+"status_list.cancelled"  = "Cancelled";

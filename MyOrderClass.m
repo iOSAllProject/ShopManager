@@ -22,7 +22,6 @@
 -(void)setMyOrder:(NSDictionary*)myOrderEx
 {
     myOrder = myOrderEx;
-    
 }
 
 -(NSDictionary*)getMyOrder{

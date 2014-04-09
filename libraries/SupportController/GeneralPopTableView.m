@@ -80,15 +80,33 @@
     }
     tableView = tbl;
     
+    NSString *statusString = [[menuItems objectAtIndex:indexPath.row] objectForKey:termName];
+    if ([statusString isEqualToString:@"All"])
+        statusString = NSLocalizedString(@"status_list.all", nil);
+    else if ([statusString isEqualToString:@"pending"])
+        statusString = NSLocalizedString(@"status_list.pending", nil);
+    else if ([statusString isEqualToString:@"failed"])
+        statusString = NSLocalizedString(@"status_list.failed", nil);
+    else if ([statusString isEqualToString:@"on-hold"])
+        statusString = NSLocalizedString(@"status_list.on-hold", nil);
+    else if ([statusString isEqualToString:@"processing"])
+        statusString = NSLocalizedString(@"status_list.processing", nil);
+    else if ([statusString isEqualToString:@"completed"])
+        statusString = NSLocalizedString(@"status_list.completed", nil);
+    else if ([statusString isEqualToString:@"refunded"])
+        statusString = NSLocalizedString(@"status_list.refunded", nil);
+    else if ([statusString isEqualToString:@"cancelled"])
+        statusString = NSLocalizedString(@"status_list.cancelled", nil);
+    
     if(needDetail == YES)
     {
         // Configure the cell...
-        cell.textLabel.text = [[ToolClass instance] decodeHTMLCharacterEntities:[[menuItems objectAtIndex:indexPath.row] objectForKey:termName]];
+        cell.textLabel.text = [[ToolClass instance] decodeHTMLCharacterEntities:statusString];
         cell.detailTextLabel.text = [[menuItems objectAtIndex:indexPath.row] objectForKey:detailTermName];
     }
     else
     {
-        cell.textLabel.text = [[ToolClass instance] decodeHTMLCharacterEntities:[[menuItems objectAtIndex:indexPath.row] objectForKey:termName]];
+        cell.textLabel.text = [[ToolClass instance] decodeHTMLCharacterEntities:statusString];
     }
     // Configure the cell...
     

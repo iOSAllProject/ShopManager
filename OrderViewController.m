@@ -30,6 +30,10 @@
     return self;
 }
 
+- (void) dealloc {
+    NSLog(@"dealloc %@",self);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -122,7 +126,23 @@
             if (section.tag == kStatusTag) {
                 MGBox *box = [section.boxes objectAtIndex:0];
                 UILabel *lbStatus = (UILabel*)[box viewWithTag:kStatusTag];
-                newOrderStatus = lbStatus.text;
+                
+                if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.all", nil)])
+                    newOrderStatus = @"All";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.pending", nil)])
+                    newOrderStatus = @"pending";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.failed", nil)])
+                    newOrderStatus = @"failed";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.on-hold", nil)])
+                    newOrderStatus = @"on-hold";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.processing", nil)])
+                    newOrderStatus = @"processing";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.completed", nil)])
+                    newOrderStatus = @"completed";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.refunded", nil)])
+                    newOrderStatus = @"refunded";
+                else if ([lbStatus.text isEqualToString:NSLocalizedString(@"status_list.cancelled", nil)])
+                    newOrderStatus = @"cancelled";
                 break;
             }
         }
@@ -223,7 +243,27 @@
         [self shortDesc:paymentDesc];
     }
     [self lblBox:NSLocalizedString(@"order_id_label", nil) value:[NSString stringWithFormat:@"#%@",[status objectForKey:@"orderID"]]];
-    [self lblBox:NSLocalizedString(@"order_status_label", nil) value:[status objectForKey:@"status"] tag:kStatusTag];
+    
+    //change language for status
+    NSString *statusStr = [status objectForKey:@"status"];
+    if ([statusStr isEqualToString:@"All"])
+        statusStr = NSLocalizedString(@"status_list.all", nil);
+    else if ([statusStr isEqualToString:@"pending"])
+        statusStr = NSLocalizedString(@"status_list.pending", nil);
+    else if ([statusStr isEqualToString:@"failed"])
+        statusStr = NSLocalizedString(@"status_list.failed", nil);
+    else if ([statusStr isEqualToString:@"on-hold"])
+        statusStr = NSLocalizedString(@"status_list.on-hold", nil);
+    else if ([statusStr isEqualToString:@"processing"])
+        statusStr = NSLocalizedString(@"status_list.processing", nil);
+    else if ([statusStr isEqualToString:@"completed"])
+        statusStr = NSLocalizedString(@"status_list.completed", nil);
+    else if ([statusStr isEqualToString:@"refunded"])
+        statusStr = NSLocalizedString(@"status_list.refunded", nil);
+    else if ([statusStr isEqualToString:@"cancelled"])
+        statusStr = NSLocalizedString(@"status_list.cancelled", nil);
+    
+    [self lblBox:NSLocalizedString(@"order_status_label", nil) value:statusStr tag:kStatusTag];
     
     [self lblBox:NSLocalizedString(@"order_email_label", nil) value:[status objectForKey:@"billing_email"]];
     [self lblBox:NSLocalizedString(@"order_phone_label", nil) value:[status objectForKey:@"billing_phone"]];
@@ -243,7 +283,7 @@
     //add label Update
     [self btnButton:NSLocalizedString(@"orderViewController.btn-update-title", nil) selector:@selector(updateOrder)];
     
-    [scroller layoutWithSpeed:0.3 completion:nil];
+    [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
     
     if([[status objectForKey:@"status"] isEqualToString:@"pending"] || [[status objectForKey:@"status"] isEqualToString:@"failed"])
     {
@@ -338,7 +378,27 @@
         if (section.tag == kStatusTag) {
             MGBox *box = [section.boxes objectAtIndex:0];
             UILabel *lbStatus = (UILabel*)[box viewWithTag:kStatusTag];
-            lbStatus.text = [data objectForKey:@"status_label"];
+            
+            //change language for status
+            NSString *statusStr = [data objectForKey:@"status_slug"];
+            if ([statusStr isEqualToString:@"All"])
+                statusStr = NSLocalizedString(@"status_list.all", nil);
+            else if ([statusStr isEqualToString:@"pending"])
+                statusStr = NSLocalizedString(@"status_list.pending", nil);
+            else if ([statusStr isEqualToString:@"failed"])
+                statusStr = NSLocalizedString(@"status_list.failed", nil);
+            else if ([statusStr isEqualToString:@"on-hold"])
+                statusStr = NSLocalizedString(@"status_list.on-hold", nil);
+            else if ([statusStr isEqualToString:@"processing"])
+                statusStr = NSLocalizedString(@"status_list.processing", nil);
+            else if ([statusStr isEqualToString:@"completed"])
+                statusStr = NSLocalizedString(@"status_list.completed", nil);
+            else if ([statusStr isEqualToString:@"refunded"])
+                statusStr = NSLocalizedString(@"status_list.refunded", nil);
+            else if ([statusStr isEqualToString:@"cancelled"])
+                statusStr = NSLocalizedString(@"status_list.cancelled", nil);
+            
+            lbStatus.text = statusStr;
             break;
         }
     }

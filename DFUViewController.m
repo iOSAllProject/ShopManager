@@ -33,20 +33,20 @@
     mainScrollView = [[UICustomScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 480) parent:self];
     [self.view addSubview:mainScrollView];
     
-//    NSString *rtspStr[] = {
-//        @"rtsp://admin@nhuanquang.dlinkddns.com:554/user=admin&password=%channel=1&stream=0.sdp?",
-//    };
     NSMutableArray *rtspStrArray = [NSMutableArray arrayWithCapacity:1];
     
     for (int i=0;i < [_cameraArray count];i++) {
-        NSDictionary *dict = [_cameraArray objectAtIndex:i];
-        NSString *username = [dict objectForKey:@"username"];
-        NSString *password = [dict objectForKey:@"password"];
-        NSString *domain   = [dict objectForKey:@"domain"];
-        NSString *channel  = [dict objectForKey:@"channel"];
-
-        NSString *rtspStr = [NSString stringWithFormat:@"rtsp://%@@%@:554/user=%@&password=%@channel=%@&stream=0.sdp?",username,domain,username,password,channel];
-        [rtspStrArray addObject:rtspStr];
+        if (i == _cameraIndex) {
+            NSDictionary *dict = [_cameraArray objectAtIndex:i];
+            NSString *username = [dict objectForKey:@"username"];
+            NSString *password = [dict objectForKey:@"password"];
+            NSString *domain   = [dict objectForKey:@"domain"];
+            NSString *channel  = [dict objectForKey:@"channel"];
+            
+            NSString *rtspStr = [NSString stringWithFormat:@"rtsp://%@@%@:554/user=%@&password=%@channel=%@&stream=0.sdp?",username,domain,username,password,channel];
+            [rtspStrArray addObject:rtspStr];
+            break;
+        }
     }
     
     NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:1];
@@ -58,8 +58,7 @@
     mainScrollView.itemArray = tmpArray;
     [self performSelector:@selector(setupCamera) withObject:nil afterDelay:1];
     
-//    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
 }
 
 - (void) setupCamera {

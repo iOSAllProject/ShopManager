@@ -765,6 +765,7 @@ static NSOperationQueue *sharedQueue = nil;
 #if DEBUG_REQUEST_STATUS || DEBUG_THROTTLING
 	NSLog(@"Starting synchronous request %@",self);
 #endif
+    timeOutSeconds = 30;
 	[self setSynchronous:YES];
 	[self setRunLoopMode:ASIHTTPRequestRunLoopMode];
 	[self setInProgress:YES];

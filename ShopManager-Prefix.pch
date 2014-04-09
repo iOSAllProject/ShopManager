@@ -61,6 +61,7 @@ typedef enum {
 #define BOLDFONT @"Helvetica"
 #define PRIMARYFONT @"HelveticaNeue-Light"
 
+#define VIEW_COMPILE_SPEED 0.1
 //#define APPLE_BLUE_COLOR [UIColor colorWithRed:(float)30/255 green:(float)106/255 blue:(float)255/255 alpha:1.0]
 #define APPLE_BLUE_COLOR [UIColor colorWithRed:(float)141/255 green:(float)198/255 blue:(float)65/255 alpha:1.0]
 
