@@ -78,8 +78,11 @@
             int row = j/2;
             int column = j%2;
             
-//            CGRect rect = CGRectMake(cx + column*82.5,row*95, 155, 160);
-            CGRect rect = CGRectMake(cx + column*82.5,50, 320, 300);
+            CGRect rect;
+            if ([[DeviceClass instance] getDevice] == IPHONE_5)
+                rect = CGRectMake(cx + column*82.5,50, 320, 300);
+            else
+                rect = CGRectMake(cx + column*82.5,25, 320, 300);
             
             DFUCameraView *cameraView = [[DFUCameraView alloc] initWithURL:[dict objectForKey:@"rtspUrl"] rect:rect];
             

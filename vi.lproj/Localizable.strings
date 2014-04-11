@@ -38,6 +38,7 @@
 "menuViewController.order-receipt" = "Đơn hàng";
 "menuViewController.camera" = "Camera";
 "menuViewController.push-notification" = "Thông báo";
+"menuViewController.products" = "Sản phẩm";
 "orderViewController.title" = "Đơn hàng";
 "orderViewController.no_order_title" = "Không có đơn hàng nào";
 "orderViewController.filter_btn_title" = "Lọc theo";
@@ -123,3 +124,15 @@
 "status_list.completed"  = "Hoàn tất";
 "status_list.refunded"   = "Hoàn trả";
 "status_list.cancelled"  = "Huỷ";
+
+"productViewController.title" = "Sản phẩm";
+"productViewController.button-add" = "Thêm";
+
+"exploreViewController.new_items_title" = "Hàng mới";
+"exploreViewController.featured_items_title" = "Hàng bán chạy";
+"exploreViewController.discount_items_title" = "Hàng giảm giá";
+"exploreViewController.service_title" = "Dịch vụ";
+
+"settingViewController.title" = "Cài đặt";
+"settingViewController.products" = "Sản phẩm";
+"settingViewController.categories" = "Danh mục";

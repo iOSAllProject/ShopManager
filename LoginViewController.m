@@ -60,6 +60,9 @@
     _txtPassword.layer.borderWidth = 0.5;
     _txtPassword.layer.cornerRadius = 3;
     
+    [_txtUsername setNuiIsApplied:@0];
+    [_txtPassword setNuiIsApplied:@0];
+    
     UIImageView *imgLockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock.png"]];
     
     [_txtPassword setRightViewMode:UITextFieldViewModeAlways];
@@ -69,6 +72,7 @@
     _btnSignIn.layer.cornerRadius = 5;
     _btnSignIn.contentMode=UIViewContentModeScaleAspectFill;
     _btnSignIn.clipsToBounds=YES;
+    [_btnSignIn setNuiIsApplied:@0];
     
     [_btnSignIn setBackgroundImage:[AppDelegate imageFromColor:APPLE_BLUE_COLOR] forState:UIControlStateNormal];
     [_btnSignIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -27,7 +27,7 @@
 //    [self getProductCategories]; // Get product categories in browse
 //    [self getProductCategoriesCustom];
 //    [self getCountries]; // load all countries start
-//    [self getHomePageApi];
+    [self getHomePageApi];
 //    [self getFeaturedProducts]; //load all featured products
 //    [self getRandomProducts];
 //    [self getRecentItems];
@@ -134,6 +134,8 @@
             [dict setObject:NSLocalizedString(@"exploreViewController.featured_items_title", nil) forKey:@"title"];
         else if ([title isEqualToString:@"Discount Items"])
             [dict setObject:NSLocalizedString(@"exploreViewController.discount_items_title", nil) forKey:@"title"];
+        else if ([title isEqualToString:@"Services"])
+            [dict setObject:NSLocalizedString(@"exploreViewController.service_title", nil) forKey:@"title"];
     }
     
     home_page_api = value;

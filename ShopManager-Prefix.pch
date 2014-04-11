@@ -49,9 +49,10 @@ typedef enum {
     #import "UINavigationBar+NUI.h"
 //    #import "SimpleNotificationView.h"
 //    #import "UIButton+NUI.h"
-//    #import "UILabel+NUI.h"
+    #import "UILabel+NUI.h"
 //    #import "UITextField+NUI.h"
     #import "UIBarButtonItem+NUI.h"
+    #import "DefinitionHeader.h"
 #endif
 
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)

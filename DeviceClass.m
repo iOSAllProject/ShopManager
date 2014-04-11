@@ -80,7 +80,7 @@
      // Put 20 if status bar enable
     int statusbar = 20;
     int navigationbar = 44;
-    int tabbar = 49;
+    int tabbar = 0;//49;
     
     CGRect ret;
     

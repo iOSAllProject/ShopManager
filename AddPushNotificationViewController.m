@@ -165,12 +165,17 @@
         // Return FALSE so that the final '\n' character doesn't get added
         return FALSE;
     }
-    if(textView.text.length >= MAX_CHARACTER && ![text isEqualToString:@""]){
-        UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"addPushNotificationViewController.exceed-characters", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
-        [dialog show];
-        return FALSE;
+    if(![text isEqualToString:@""]){
+        if (textView.text.length > MAX_CHARACTER) {
+            UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"addPushNotificationViewController.exceed-characters", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
+            [dialog show];
+            return FALSE;
+        }
     }
-    _lbNumberCharacter.text = [NSString stringWithFormat:@"%d",MAX_CHARACTER-textView.text.length];
+    int numberCharacterLeft = MAX_CHARACTER-textView.text.length;
+    if (numberCharacterLeft < 0)
+        numberCharacterLeft = 0;
+    _lbNumberCharacter.text = [NSString stringWithFormat:@"%d",numberCharacterLeft];
     // For any other character return TRUE so that the text gets added to the view
     return TRUE;
 }

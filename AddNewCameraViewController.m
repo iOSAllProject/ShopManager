@@ -50,6 +50,8 @@
     _txtChannel.text = @"1";
     _lbPublish.text  = NSLocalizedString(@"addNewCameraVC.public-camera", nil);
     
+    [_mainSwitch setNuiIsApplied:@0];
+    
     UIBarButtonItem *btnSave = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"addNewCameraVC.btn-save", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveCamera)];
     self.navigationItem.rightBarButtonItem = btnSave;
     
@@ -98,31 +100,25 @@
     
     //save camera list to server
     //get database URL of user by email or username
-//    NSString *decryptedUsername = [[AppDelegate instance] getDecryptedData:[[AppDelegate instance] getUsernameAuthorizeCouchDB]];
-//    NSString *decryptedPassword = [[AppDelegate instance] getDecryptedData:[[AppDelegate instance] getPasswordAuthorizeCouchDB]];
-//    
-//    NSString *urlStr = [NSString stringWithFormat:@"%@:3001/set_camera",[[AppDelegate instance] getMainURL]];
-//    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//    request.requestMethod = @"POST";
-//    request.username = decryptedUsername;
-//    request.password = decryptedPassword;
-//    
-//    NSString *cameraListData = [[(ListCameraViewController*)parent mainArray] JSONRepresentation];
-//    //omit [ ]
-//    cameraListData = [cameraListData stringByReplacingOccurrencesOfString:@"[" withString:@""];
-//    cameraListData = [cameraListData stringByReplacingOccurrencesOfString:@"]" withString:@""];
-//    
-//    NSLog(@"camera = %@",cameraListData);
-//    
-//    [request addPostValue:[[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:USERNAME]] forKey:@"user"];
-//    [request addPostValue:cameraListData forKey:@"camera"];
-//    
-//    [request startSynchronous];
-//    NSError *error = [request error];
-//    NSLog(@"error  = %@",error);
-//    if (!error) {
-//
-//    }
+    NSString *decryptedUsername = [[AppDelegate instance] getDecryptedData:[[AppDelegate instance] getUsernameAuthorizeCouchDB]];
+    NSString *decryptedPassword = [[AppDelegate instance] getDecryptedData:[[AppDelegate instance] getPasswordAuthorizeCouchDB]];
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@:3001/set_camera",[[AppDelegate instance] getMainURL]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    request.requestMethod = @"POST";
+    request.username = decryptedUsername;
+    request.password = decryptedPassword;
+
+    NSString *cameraListData = [[(ListCameraViewController*)parent mainArray] JSONRepresentation];
+    
+    [request addPostValue:[[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:USERNAME]] forKey:@"user"];
+    [request addPostValue:cameraListData forKey:@"camera"];
+
+    [request startAsynchronous];
+    NSError *error = [request error];
+    if (!error) {
+
+    }
     
     [[(ListCameraViewController*)parent tableView] reloadData];
     [self.navigationController popViewControllerAnimated:YES];

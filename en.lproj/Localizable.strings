@@ -39,6 +39,8 @@
 "menuViewController.order-receipt" = "Order Receipt";
 "menuViewController.camera" = "Camera";
 "menuViewController.push-notification" = "Push Notification";
+"menuViewController.products" = "Products";
+
 "orderViewController.title" = "Orders";
 "orderViewController.no_order_title" = "Didn't find any order";
 "orderViewController.filter_btn_title" = "Filter by";
@@ -121,3 +123,15 @@
 "status_list.completed"  = "Completed";
 "status_list.refunded"   = "Refunded";
 "status_list.cancelled"  = "Cancelled";
+
+"productViewController.title" = "Products";
+"productViewController.button-add" = "Add";
+
+"exploreViewController.new_items_title" = "New Items";
+"exploreViewController.featured_items_title" = "Featured Items";
+"exploreViewController.discount_items_title" = "Discount Items";
+"exploreViewController.service_title" = "Services";
+
+"settingViewController.title" = "Settings";
+"settingViewController.products" = "Products";
+"settingViewController.categories" = "Categories";

@@ -12,6 +12,7 @@
 
 //static NSString *mainURL = @"http://nhuanquang.com";
 static NSString *mainURL = @"http://128.199.195.111";
+//static NSString *mainURL = @"http://192.168.1.20";
 static NSString *dbURL  = nil;
 static NSString *usernameAuthorizeCouchDB = nil;
 static NSString *passwordAuthorizeCouchDB = nil;
