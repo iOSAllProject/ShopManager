@@ -94,9 +94,9 @@
 }
 
 #pragma mark - Table view data source
-- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellAccessoryDisclosureIndicator;
-}
+//- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewCellAccessoryDisclosureIndicator;
+//}
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -162,6 +162,7 @@
     //[cell.imageView setImageWithURL:[NSURL URLWithString:[[aryDic objectAtIndex:indexPath.row] objectForKey:@"thumb"]] placeholderImage:[UIImage imageNamed:NSLocalizedString(@"image_loading_placeholder", nil)]];
     
     cell.textLabel.text = [[ToolClass instance] decodeHTMLCharacterEntities:[[aryDic objectAtIndex:indexPath.row] objectForKey:@"name"]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

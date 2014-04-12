@@ -21,6 +21,8 @@
 //@property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet UILabel *lbWelcome;
 @property (strong, nonatomic) IBOutlet UILabel *lbPleaseSignIn;
+@property (strong, nonatomic) IBOutlet UIImageView *imgUsernameView;
+@property (strong, nonatomic) IBOutlet UIImageView *imgPasswordView;
 
 - (IBAction)tapCheckBox:(id)sender;
 - (IBAction)tapForgotPassword:(id)sender;

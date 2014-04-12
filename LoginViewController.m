@@ -43,22 +43,25 @@
     [_btnForgotPassword setTitle:NSLocalizedString(@"login.forgot-password", nil) forState:UIControlStateNormal];
     [_btnSignIn setTitle:NSLocalizedString(@"login.sign-in", nil) forState:UIControlStateNormal];
     
+    //set text color for place holder
     UIColor *color = [UIColor lightTextColor];
     _txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"login.username", nil) attributes:@{NSForegroundColorAttributeName: color}];
     _txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"login.password", nil) attributes:@{NSForegroundColorAttributeName: color}];
     
     //set border for text field
     _txtUsername.textColor = [UIColor whiteColor];
-    _txtUsername.backgroundColor   = [UIColor blackColor];
-    _txtUsername.layer.borderColor = [UIColor whiteColor].CGColor;
-    _txtUsername.layer.borderWidth = 0.5;
-    _txtUsername.layer.cornerRadius = 3;
+//    _txtUsername.background = [UIImage imageNamed:@"bg-textbox.png"];
+//    _txtUsername.alpha = 0.8;
+//    _txtUsername.layer.borderColor = [UIColor whiteColor].CGColor;
+//    _txtUsername.layer.borderWidth = 0.5;
+//    _txtUsername.layer.cornerRadius = 3;
     
     _txtPassword.textColor = [UIColor whiteColor];
-    _txtPassword.backgroundColor   = [UIColor blackColor];
-    _txtPassword.layer.borderColor = [UIColor whiteColor].CGColor;
-    _txtPassword.layer.borderWidth = 0.5;
-    _txtPassword.layer.cornerRadius = 3;
+//    _txtPassword.background = [UIImage imageNamed:@"bg-textbox.png"];
+//    _txtPassword.alpha = 0.8;
+//    _txtPassword.layer.borderColor = [UIColor whiteColor].CGColor;
+//    _txtPassword.layer.borderWidth = 0.5;
+//    _txtPassword.layer.cornerRadius = 3;
     
     [_txtUsername setNuiIsApplied:@0];
     [_txtPassword setNuiIsApplied:@0];
@@ -276,11 +279,19 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    textField.layer.borderColor = APPLE_BLUE_COLOR.CGColor;
+//    textField.layer.borderColor = APPLE_BLUE_COLOR.CGColor;
+    if (textField == _txtUsername)
+        _imgUsernameView.image = [UIImage imageNamed:@"bg-textbox-selected.png"];
+    else
+        _imgPasswordView.image = [UIImage imageNamed:@"bg-textbox-selected.png"];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    textField.layer.borderColor = [UIColor whiteColor].CGColor;
+//    textField.layer.borderColor = [UIColor whiteColor].CGColor;
+    if (textField == _txtUsername)
+        _imgUsernameView.image = [UIImage imageNamed:@"bg-textbox.png"];
+    else
+        _imgPasswordView.image = [UIImage imageNamed:@"bg-textbox.png"];
 }
 
 - (BOOL)prefersStatusBarHidden

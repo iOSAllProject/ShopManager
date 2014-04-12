@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
@@ -9,6 +10,8 @@
                 <outlet property="btnCheckBox" destination="7ek-pJ-o02" id="LRf-lR-dQA"/>
                 <outlet property="btnForgotPassword" destination="mDM-p7-PPg" id="jP9-Vf-TLi"/>
                 <outlet property="btnSignIn" destination="aTO-5y-skX" id="Z99-oW-bbI"/>
+                <outlet property="imgPasswordView" destination="hOf-Uo-iw0" id="53D-7g-vxQ"/>
+                <outlet property="imgUsernameView" destination="Qu5-8y-eIS" id="q4g-h1-K9Z"/>
                 <outlet property="lbPleaseSignIn" destination="6sm-2Q-7GR" id="pF1-r0-W92"/>
                 <outlet property="lbRememberMe" destination="Lh7-hm-h3Z" id="Gc8-Vh-c6H"/>
                 <outlet property="lbWelcome" destination="Wqi-QB-cvB" id="Lum-nf-Aca"/>
@@ -26,14 +29,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bsI-Hf-tGM">
-                    <rect key="frame" x="0.0" y="357" width="320" height="123"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-ip4.png" translatesAutoresizingMaskIntoConstraints="NO" id="bsI-Hf-tGM">
+                    <rect key="frame" x="0.0" y="390" width="320" height="90"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xmP-Vf-ogy">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg-textbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qu5-8y-eIS">
                     <rect key="frame" x="16" y="133" width="288" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg-textbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-Uo-iw0">
+                    <rect key="frame" x="16" y="193" width="288" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xmP-Vf-ogy">
+                    <rect key="frame" x="16" y="133" width="288" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
@@ -41,10 +52,10 @@
                         <outlet property="delegate" destination="-1" id="Avp-v1-hMI"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="43X-BN-P7r">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="43X-BN-P7r">
                     <rect key="frame" x="16" y="193" width="288" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                     <connections>
@@ -97,7 +108,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTO-5y-skX">
-                    <rect key="frame" x="16" y="309" width="288" height="30"/>
+                    <rect key="frame" x="16" y="309" width="288" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -116,8 +127,9 @@
     </objects>
     <resources>
         <image name="Default.png" width="320" height="480"/>
-        <image name="btnCheckBox.png" width="17" height="17"/>
-        <image name="btnCheckBoxSelected.png" width="17" height="17"/>
-        <image name="logo.png" width="320" height="123"/>
+        <image name="bg-textbox.png" width="255" height="39"/>
+        <image name="btnCheckBox.png" width="21" height="21"/>
+        <image name="btnCheckBoxSelected.png" width="21" height="21"/>
+        <image name="logo-ip4.png" width="320" height="89"/>
     </resources>
 </document>

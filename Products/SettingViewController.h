@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+enum {
+    kProduct = 0,
+    kCategory
+};
+
 @interface SettingViewController : UITableViewController {
     NSMutableArray *mainArray;
 }

@@ -7,6 +7,8 @@
 //
 
 #import "SettingViewController.h"
+#import "ExploreViewController.h"
+#import "CategoryViewController.h"
 
 @interface SettingViewController ()
 
@@ -38,8 +40,14 @@
         NSLocalizedString(@"settingViewController.categories", nil)
     };
     
+    NSString *moduleIndex[] = {
+        [NSString stringWithFormat:@"%d",kProduct],
+        [NSString stringWithFormat:@"%d",kCategory]
+    };
+    
     for (int i=0;i < sizeof(moduleTitle)/sizeof(moduleTitle[0]);i++) {
-        [mainArray addObject:moduleTitle[i]];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:moduleIndex[i],@"index",moduleTitle[i],@"title", nil];
+        [mainArray addObject:dict];
     }
 }
 
@@ -63,8 +71,10 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentify];
     // Configure the cell...
+
+    NSDictionary *dict = [mainArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [mainArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [dict objectForKey:@"title"];
     
     return cell;
 }
@@ -107,21 +117,21 @@
 }
 */
 
-/*
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *dict = [mainArray objectAtIndex:indexPath.row];
     // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    if ([[dict objectForKey:@"index"] intValue] == kProduct) {
+        ExploreViewController *controller = [[ExploreViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if ([[dict objectForKeyedSubscript:@"index"] intValue] == kCategory) {
+        CategoryViewController *controller = [[CategoryViewController alloc] initWithNibName:@"CategoryViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
-*/
 
 @end
