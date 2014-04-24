@@ -61,7 +61,7 @@
     _lbSetting.text = NSLocalizedString(@"settingViewController.title", nil);
     
     //temporary hide
-//    _btnSetting.hidden = _lbSetting.hidden = YES;
+    _btnSetting.hidden = _lbSetting.hidden = YES;
     //get banner attachment
 //    NSDictionary *accountDict = [[AppDelegate instance] getAccountDict];
     

@@ -62,6 +62,8 @@
         _txtPassword.text    = [cameraDict objectForKey:@"password"];
         
         _txtChannel.text = @"1";
+        
+        _mainSwitch.on = [[cameraDict objectForKey:@"isCameraPublic"] boolValue];
     }
 }
 

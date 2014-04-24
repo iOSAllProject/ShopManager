@@ -85,12 +85,28 @@
     
     if (avformat_open_input(&pFormatCtx, [moviePath UTF8String], NULL, &opts) !=0 ) {
         av_log(NULL, AV_LOG_ERROR, "Couldn't open file\n");
+        
+        //hide navigation
+        UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"cameraVC.could-not-open-file", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
+        [dialog show];
+        
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [MBProgressHUD hideAllHUDsForView:delegate.window.rootViewController.view animated:YES];
+        
         goto initError;
     }
     
     // Retrieve stream information
     if (avformat_find_stream_info(pFormatCtx,NULL) < 0) {
         av_log(NULL, AV_LOG_ERROR, "Couldn't find stream information\n");
+        
+        //hide navigation
+        UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.warning", nil) message:NSLocalizedString(@"cameraVC.could-not-find-stream", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
+        [dialog show];
+        
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [MBProgressHUD hideAllHUDsForView:delegate.window.rootViewController.view animated:YES];
+        
         goto initError;
     }
     

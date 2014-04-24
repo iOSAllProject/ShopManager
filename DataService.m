@@ -136,6 +136,12 @@
             [dict setObject:NSLocalizedString(@"exploreViewController.discount_items_title", nil) forKey:@"title"];
         else if ([title isEqualToString:@"Services"])
             [dict setObject:NSLocalizedString(@"exploreViewController.service_title", nil) forKey:@"title"];
+        else if ([title isEqualToString:@"Coffee"])
+            [dict setObject:NSLocalizedString(@"exploreViewController.coffee_title", nil) forKey:@"title"];
+        else if ([title isEqualToString:@"Other drink"])
+            [dict setObject:NSLocalizedString(@"exploreViewController.other_drink_title", nil) forKey:@"title"];
+        else if ([title isEqualToString:@"Favorites"])
+            [dict setObject:NSLocalizedString(@"exploreViewController.favorites_title", nil) forKey:@"title"];
     }
     
     home_page_api = value;

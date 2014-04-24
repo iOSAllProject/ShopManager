@@ -30,6 +30,7 @@
 "login.failed" = "Đăng nhập thất bại";
 "login.wrong-username-or-password" = "Tên đăng nhập hay mật khẩu không đúng. Vui lòng thử lại.";
 "login.user-not-existed" = "Tài khoản của bạn chưa tồn tại hoặc chưa được kích hoạt. Vui lòng liên lạc support@nhuanquang.com để biết thêm chi tiết. Xin cảm ơn.";
+"login.user-inactived" = "Your account is inactived. Please contact support@nhuanquang.com to active your account. Thank you.";
 "login.lb-welcome" = "XIN CHÀO";
 "login.lb-please-sign-in" = "Vui lòng đăng nhập để truy cập";
 "logout.title" = "Đăng xuất";
@@ -88,6 +89,8 @@
 "addNewCameraVC.required-domain" = "Tên miền không được để rỗng";
 "addNewCameraVC.required-channel" = "Kênh không được để rỗng";
 "addNewCameraVC.public-camera" = "Xuất ra";
+"cameraVC.could-not-open-file" = "Không thể mở được tập tin";
+"cameraVC.could-not-find-stream" = "Không thể mở luồng dữ liệu. Vui lòng kiểm tra kết nối đến camera";
 
 "mycartbox.add-coupon" = "Thêm mã giảm giá";
 
@@ -132,6 +135,9 @@
 "exploreViewController.featured_items_title" = "Hàng bán chạy";
 "exploreViewController.discount_items_title" = "Hàng giảm giá";
 "exploreViewController.service_title" = "Dịch vụ";
+"exploreViewController.coffee_title" = "Coffee";
+"exploreViewController.other_drink_title" = "Thức uống khác";
+"exploreViewController.favorites_title" = "Ưa thích";
 
 "settingViewController.title" = "Cài đặt";
 "settingViewController.products" = "Sản phẩm";

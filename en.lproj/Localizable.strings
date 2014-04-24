@@ -31,6 +31,7 @@
 "login.failed" = "Login failed";
 "login.wrong-username-or-password" = "Username or password is wrong. Please check it again.";
 "login.user-not-existed" = "Your account is not existed or not activated. Please contact support@nhuanquang.com for more detail. Thank you.";
+"login.user-inactived" = "Your account is inactived. Please contact support@nhuanquang.com to active your account. Thank you.";
 "login.lb-welcome" = "WELCOME";
 "login.lb-please-sign-in" = "Please sign in to get access";
 "logout.title" = "Log out";
@@ -88,6 +89,8 @@
 "addNewCameraVC.required-domain" = "Domain must not be blank";
 "addNewCameraVC.required-channel" = "Channel must not be blank";
 "addNewCameraVC.public-camera" = "Public";
+"cameraVC.could-not-open-file" = "Couldn't open file";
+"cameraVC.could-not-find-stream" = "Couldn't open the stream. Please check your camera connection";
 
 "mycartbox.add-coupon" = "Add Coupon";
 
@@ -131,6 +134,9 @@
 "exploreViewController.featured_items_title" = "Featured Items";
 "exploreViewController.discount_items_title" = "Discount Items";
 "exploreViewController.service_title" = "Services";
+"exploreViewController.coffee_title" = "Coffee";
+"exploreViewController.other_drink_title" = "Other drink";
+"exploreViewController.favorites_title" = "Favorites";
 
 "settingViewController.title" = "Settings";
 "settingViewController.products" = "Products";
