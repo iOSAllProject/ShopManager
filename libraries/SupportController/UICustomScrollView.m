@@ -80,7 +80,7 @@
             
             CGRect rect;
             if ([[DeviceClass instance] getDevice] == IPHONE_5)
-                rect = CGRectMake(cx + column*82.5,50, 320, 300);
+                rect = CGRectMake(cx + column*82.5,25, 320, 300);
             else
                 rect = CGRectMake(cx + column*82.5,25, 320, 300);
             

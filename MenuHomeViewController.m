@@ -77,7 +77,7 @@
 
 - (BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
 }
 
 - (IBAction)tapOrderReceipt:(id)sender {

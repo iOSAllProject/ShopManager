@@ -234,7 +234,7 @@ static BOOL connectionRequired = NO;
     internetReach = [Reachability reachabilityForInternetConnection];
 	[internetReach startNotifier];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

@@ -29,7 +29,7 @@
 
 - (BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
 }
 
 - (void)viewDidLoad
@@ -147,6 +147,16 @@
                 if ([[responseDict objectForKey:@"total_user_left"] intValue] == 0) {
                     UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general.success", Nil) message:NSLocalizedString(@"addPushNotificationViewController.push-notification-success", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"general.ok", nil) otherButtonTitles:nil];
                     [dialog show];
+                    
+                    //push real notification
+                    NSString *urlStr = [NSString stringWithFormat:@"%@/?candycart=json-api&type=send-real-push-notification",[[AppDelegate instance] getDatabaseURL]];
+                    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+                    request.requestMethod = @"POST";
+                    [request addPostValue:_txtMessage.text forKey:@"message"];
+                    [request addPostValue:[currentProductInfo objectForKey:@"product_ID"] forKey:@"product_id"];
+                    
+                    request.timeOutSeconds = 30;
+                    [request startAsynchronous];
                 }
             }
             

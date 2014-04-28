@@ -28,7 +28,7 @@
 
 - (BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
 }
 
 - (void)viewDidLoad
@@ -72,6 +72,7 @@
         NSString *username = [[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:USERNAME]];
         [request addPostValue:username forKey:@"username"];
         
+        [request setDefaultResponseEncoding:NSUTF8StringEncoding];
         [request startSynchronous];
         
         NSError *error = [request error];
@@ -90,10 +91,10 @@
                     if ([cameraList isKindOfClass:[NSMutableArray class]]) {
                         for (int i=0;i < [cameraList count];i++) {
                             NSMutableDictionary *cameraDict = [cameraList objectAtIndex:i];
-                            BOOL isPublic = [[cameraDict objectForKey:@"isCameraPublic"] boolValue];
-                            if (isPublic) {
+//                            BOOL isPublic = [[cameraDict objectForKey:@"isCameraPublic"] boolValue];
+//                            if (isPublic) {
                                 [mainArray addObject:cameraDict];
-                            }
+//                            }
                         }
                     }
                 }
