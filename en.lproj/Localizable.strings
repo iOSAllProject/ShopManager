@@ -141,3 +141,19 @@
 "settingViewController.title" = "Settings";
 "settingViewController.products" = "Products";
 "settingViewController.categories" = "Categories";
+
+"detail_product_type_small"  = "Small";
+"detail_product_type_normal" = "Normal";
+"detail_product_type_large"  = "Large";
+"detail_product_place_da_nang" = "Da Nang";
+"detail_product_place_ha_noi"  = "Ha Noi";
+"detail_product_co_duong" = "Has sugar";
+"detail_product_khong_duong" = "No sugar";
+"detail_product_it_sua" = "Less milk";
+"detail_product_nhieu_sua" = "More milk";
+"detail_product_nong" = "Hot";
+"detail_product_da" = "Ice";
+"detail_product_khong_thach" = "No Jelly";
+"detail_product_thach_cafe"  = "Coffee Jelly";
+"detail_product_thach_tra_xanh" = "Green Tea Jelly";
+"detail_product_thach_socola" = "Chocolate Jelly";

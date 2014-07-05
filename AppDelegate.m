@@ -203,6 +203,20 @@ static BOOL connectionRequired = NO;
     }
 }
 
+- (void) getAuthorizeAccount {
+    //get account to authorize couchdb webservice
+    NSMutableDictionary *settingDict = [NSMutableDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:@"http://nhuanquang.com/Setting.plist"]];
+    if (settingDict != nil) {
+        usernameAuthorizeCouchDB = [settingDict objectForKey:@"username"];
+        passwordAuthorizeCouchDB = [settingDict objectForKey:@"password"];
+    }
+    else {
+        settingDict = [NSMutableDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:@"http://nhuanquang.com/Setting.plist"]];
+        usernameAuthorizeCouchDB = [settingDict objectForKey:@"username"];
+        passwordAuthorizeCouchDB = [settingDict objectForKey:@"password"];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if([[DeviceClass instance] getOSVersion] == iOS7)
@@ -216,15 +230,11 @@ static BOOL connectionRequired = NO;
     }
     [NUIAppearance init];
     
-    //get account to authorize couchdb webservice
-    NSMutableDictionary *settingDict = [NSMutableDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:@"http://nhuanquang.com/Setting.plist"]];
-    
-    usernameAuthorizeCouchDB = [settingDict objectForKey:@"username"];
-    passwordAuthorizeCouchDB = [settingDict objectForKey:@"password"];
-    
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(hostNameReachabilityChanged:) name: kHostNameReachabilityChangedNotification object: nil];
+    
+    [self performSelectorInBackground:@selector(getAuthorizeAccount) withObject:nil];
     
     //    //check internet connection
     hostReach = [ReachHostName reachabilityWithHostName: @"nhuanquang.com"];

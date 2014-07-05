@@ -12,6 +12,7 @@
 #import "MGLineStyled.h"
 #import "OrderViewController.h"
 #import "GeneralPopTableView.h"
+#import "PhotoBox.h"
 
 @interface MyOrderViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate,GeneralPopTableViewDelegate,MBProgressHUDDelegate>
 {
@@ -23,6 +24,17 @@
     UIButton *btnFilter;
     FPPopoverController *popover;
     UIActivityIndicatorView *myActivityView;
+    int currentPage;
+    UIActivityIndicatorView *spinner;
+    BOOL processing;
+    
+    float fixedHeight;
+    BOOL isLoadMore;
+    NSString *filterSlug;
+    NSMutableDictionary *myOrderDict;
+    NSMutableArray *orderArray;
+    
+    BOOL didReadyLoadMore;
 }
 
 - (void) listOrder;

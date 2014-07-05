@@ -111,7 +111,7 @@
 }
 
 - (void)layoutWithSpeed:(NSTimeInterval)speed completion:(Block)completion {
-  [MGLayoutManager layoutBoxesIn:self withSpeed:speed completion:completion];
+    [MGLayoutManager layoutBoxesIn:self withSpeed:speed completion:completion];
 }
 
 - (void)layoutSubviews {

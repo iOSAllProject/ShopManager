@@ -28,6 +28,17 @@
     return self;
 }
 
+-(void)loadingIndicator {
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.frame = CGRectMake(150, 70, 24, 24);
+    spinner.hidesWhenStopped = YES;
+    
+    [self.view addSubview:spinner];
+    
+    [spinner startAnimating];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,6 +59,13 @@
     scroller.alwaysBounceVertical = YES;
     
     [self.view addSubview:scroller];
+    
+    myOrderDict = [NSMutableDictionary dictionaryWithCapacity:1];
+    orderArray = [NSMutableArray arrayWithCapacity:1];
+    fixedHeight = CGRectGetHeight(scroller.frame);
+    currentPage = 1;
+    filterSlug = @"All";
+    isLoadMore = NO;
     
     [self listOrder];
     
@@ -75,14 +93,106 @@
 }
 
 - (void) listOrder {
+//    UIActivityIndicatorView *act = [[MiscInstances instance] getLoadMoreActivityView];
+//    [act startAnimating];
+//    
+//    UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//    loadMoreLbl.hidden = YES;
+    
+//    [self loadingIndicator];
+    
+    currentPage = 1;
+    
     //get list order
     dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.get-list-order", NULL);
     dispatch_async(queue, ^(void) {
-        [self getListOfMyOrderByFilter:@"All"];
+        processing = YES;
+
+        NSDictionary *tmpOrderDict = [self getListOfMyOrderByFilter:filterSlug page:currentPage numberRow:NUMBER_ROW_PER_LOAD];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [myActivityView stopAnimating];
+            
+            NSMutableArray *tmpArray = [tmpOrderDict objectForKey:@"all_order"];
+            for (int i=0;i < [tmpArray count];i++) {
+                NSDictionary *dict = [tmpArray objectAtIndex:i];
+                [orderArray addObject:dict];
+            }
+            
+            if ([orderArray count] > 0) {
+                [myOrderDict setObject:orderArray forKey:@"all_order"];
+                [myOrderDict setObject:filterSlug forKey:@"filter"];
+            }
+            
+            processing = NO;
+            [[MyOrderClass instance] setListOfMyOrder:myOrderDict];
+        
             [self setOrderView];
             
-            [myActivityView stopAnimating];
+            if ([tmpArray count] <= NUMBER_ROW_PER_LOAD) {
+                isLoadMore = YES;
+            }
+            else {
+                isLoadMore = NO;
+//                [self loadMoreOrder]; //display load more box
+            }
+            
+//            UIActivityIndicatorView *act = [[MiscInstances instance] getLoadMoreActivityView];
+//            [act stopAnimating];
+//            
+//            UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//            loadMoreLbl.hidden = NO;
+        });
+    });
+}
+
+- (void) listMoreOrder {
+//    UIActivityIndicatorView *act = [[MiscInstances instance] getLoadMoreActivityView];
+//    [act startAnimating];
+//
+//    UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//    loadMoreLbl.hidden = YES;
+
+//    [self loadingIndicator];
+    
+    //get list order
+    dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.get-list-order", NULL);
+    dispatch_async(queue, ^(void) {
+        processing = YES;
+        
+        NSDictionary *tmpOrderDict = [self getListOfMyOrderByFilter:filterSlug page:currentPage numberRow:NUMBER_ROW_PER_LOAD];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+//            [spinner removeFromSuperview];
+            
+            NSMutableArray *tmpArray = [tmpOrderDict objectForKey:@"all_order"];
+            for (int i=0;i < [tmpArray count];i++) {
+                NSDictionary *dict = [tmpArray objectAtIndex:i];
+                [orderArray addObject:dict];
+            }
+            
+            if ([orderArray count] > 0) {
+                [myOrderDict setObject:orderArray forKey:@"all_order"];
+                [myOrderDict setObject:filterSlug forKey:@"filter"];
+            }
+            
+            [[MyOrderClass instance] setListOfMyOrder:myOrderDict];
+            
+            [self setOrderView];
+            
+            if ([tmpArray count] <= NUMBER_ROW_PER_LOAD) {
+                isLoadMore = YES;
+            }
+            else {
+                isLoadMore = NO;
+//                [self loadMoreOrder]; //display load more box
+            }
+            
+            processing = NO;
+            
+//            UIActivityIndicatorView *act = [[MiscInstances instance] getLoadMoreActivityView];
+//            [act stopAnimating];
+//            
+//            UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//            loadMoreLbl.hidden = NO;
         });
     });
 }
@@ -115,12 +225,68 @@
         NSString *responseStr = [request responseString];
         myOrderDict = [responseStr JSONValue];
         
+        
+        
         [[MyOrderClass instance] setListOfMyOrder:myOrderDict];
     }
     
     return myOrderDict;
 }
 
+- (NSDictionary*) getListOfMyOrderByFilter:(NSString*)_filterType page:(int)_page numberRow:(int)_numberRow {
+    NSMutableDictionary *tmpOrderDict;
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/?candycart=json-api&type=get-all-order-paging",[[AppDelegate instance] getDatabaseURL]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    request.requestMethod = @"POST";
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *decryptedUsername = [[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:USERNAME]];
+    NSString *decryptedPassword = [[AppDelegate instance] getDecryptedData:[userDefaults objectForKey:PASSWORD]];
+    NSString *filterType = _filterType;
+    
+    [request addPostValue:decryptedUsername forKey:@"username"];
+    [request addPostValue:decryptedPassword forKey:@"password"];
+    [request addPostValue:filterType forKey:@"filter"];
+    [request addPostValue:[NSNumber numberWithInt:_page] forKey:@"page"];
+    [request addPostValue:[NSNumber numberWithInt:_numberRow] forKey:@"itemperpage"];
+    
+    [request startSynchronous];
+    
+    NSError *error;
+    
+    if (!error) {
+        NSString *responseStr = [request responseString];
+        
+        tmpOrderDict = [responseStr JSONValue];
+    }
+    
+    return tmpOrderDict;
+}
+
+-(void)loadMoreOrder {
+    MGTableBoxStyled *section = MGTableBoxStyled.box;
+    section.margin = UIEdgeInsetsMake(10.0, 10.0, 0.0, 0.0);
+    [scroller.boxes addObject:section];
+    
+    PhotoBox *box = [PhotoBox loadMore:CGSizeMake(300, 30)];
+    
+    box.onTap = ^{
+//        if(currentPage == totalPage)
+        if (!isLoadMore)
+        {
+            NSLog(@"Maximun page is reached");
+        }
+        else
+        {
+            currentPage += 1;
+            [self listMoreOrder];
+        }
+    };
+    
+    [section.topLines addObject:box];
+}
 
 -(void)filterAction{
     GeneralPopTableView *genral = [[GeneralPopTableView alloc] init];
@@ -146,13 +312,61 @@
     
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
+    [orderArray removeAllObjects];
+    [scroller setContentSize:CGSizeMake(310, 548)];
+    
+    currentPage = 1;
+    
+    filterSlug = [chooseData objectForKey:@"status_slug"];
+    
+    NSString *statusStr = [[chooseData objectForKey:@"status_slug"] mutableCopy];
+    if ([statusStr isEqualToString:@"All"])
+        statusStr = NSLocalizedString(@"status_list.all", nil);
+    else if ([statusStr isEqualToString:@"pending"])
+        statusStr = NSLocalizedString(@"status_list.pending", nil);
+    else if ([statusStr isEqualToString:@"failed"])
+        statusStr = NSLocalizedString(@"status_list.failed", nil);
+    else if ([statusStr isEqualToString:@"on-hold"])
+        statusStr = NSLocalizedString(@"status_list.on-hold", nil);
+    else if ([statusStr isEqualToString:@"processing"])
+        statusStr = NSLocalizedString(@"status_list.processing", nil);
+    else if ([statusStr isEqualToString:@"completed"])
+        statusStr = NSLocalizedString(@"status_list.completed", nil);
+    else if ([statusStr isEqualToString:@"refunded"])
+        statusStr = NSLocalizedString(@"status_list.refunded", nil);
+    else if ([statusStr isEqualToString:@"cancelled"])
+        statusStr = NSLocalizedString(@"status_list.cancelled", nil);
+    [btnFilter setTitle:statusStr forState:UIControlStateNormal];
+    
     dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.select-filter", NULL);
     dispatch_async(queue, ^(void) {
-        NSDictionary *getListOfMyOrder = [self getListOfMyOrderByFilter:[chooseData objectForKey:@"status_slug"]];
-        
+        NSDictionary *tmpOrderDict = [self getListOfMyOrderByFilter:filterSlug page:currentPage numberRow:NUMBER_ROW_PER_LOAD];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [[MyOrderClass instance] setListOfMyOrder:getListOfMyOrder];
+//            [spinner removeFromSuperview];
+            
+            NSMutableArray *tmpArray = [tmpOrderDict objectForKey:@"all_order"];
+            for (int i=0;i < [tmpArray count];i++) {
+                NSDictionary *dict = [tmpArray objectAtIndex:i];
+                [orderArray addObject:dict];
+            }
+            
+            if ([orderArray count] > 0) {
+                [myOrderDict setObject:orderArray forKey:@"all_order"];
+                [myOrderDict setObject:filterSlug forKey:@"filter"];
+            }
+            
+            processing = NO;
+            [[MyOrderClass instance] setListOfMyOrder:myOrderDict];
+            
             [self setOrderView];
+            
+            if ([tmpArray count] <= NUMBER_ROW_PER_LOAD) {
+                isLoadMore = YES;
+                //                [self loadMoreOrder]; //display load more box
+            }
+            else {
+                isLoadMore = NO;
+            }
             
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         });
@@ -163,12 +377,12 @@
     
     [scroller.boxes removeAllObjects];
     
-    dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.my-order", NULL);
-    dispatch_async(queue, ^(void) {
-        
+//    dispatch_queue_t queue = dispatch_queue_create("com.nhuanquang.my-order", NULL);
+//    dispatch_async(queue, ^(void) {
+    
         NSDictionary *getMyListOfOrder = [[MyOrderClass instance] getListOfMyOrder];
         
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
+//        dispatch_async(dispatch_get_main_queue(), ^(void) {
 //            NSArray *lists = [getMyListOfOrder objectForKey:@"my_order"];
             NSArray *lists = [getMyListOfOrder objectForKey:@"all_order"];
             if([lists count] == 0)
@@ -185,8 +399,8 @@
             }
             
             [scroller layoutWithSpeed:VIEW_COMPILE_SPEED completion:nil];
-        });
-    });
+//        });
+//    });
 }
 
 
@@ -255,21 +469,134 @@
     
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollViews
-{
-    initialContentOffset = scrollViews.contentOffset;
-}
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollViews
+//{
+//    initialContentOffset = scrollViews.contentOffset;
+//}
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollViews
+//{
+//    
+//    [[SettingDataClass instance] autoHideGlobal:scrollViews navigationView:self.navigationController contentOffset:initialContentOffset];
+//}
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollViews
-{
+//UIScrollViewDelegate Method
+- (CGFloat)tableScrollOffset {
     
-    [[SettingDataClass instance] autoHideGlobal:scrollViews navigationView:self.navigationController contentOffset:initialContentOffset];
+    CGFloat offset = 0.0f;
+    
+    if ([scroller contentSize].height < CGRectGetHeight([scroller frame])) {
+        
+        offset = -[scroller contentOffset].y;
+        
+    } else {
+        
+        offset = ([scroller contentSize].height - [scroller contentOffset].y) - CGRectGetHeight([scroller frame]);
+    }
+    
+    return offset;
 }
 
-- (void)didReceiveMemoryWarning
+- (BOOL)detectEndofScroll{
+    
+    BOOL scrollResult;
+    CGPoint offset = scroller.contentOffset;
+    CGRect bounds = scroller.bounds;
+    CGSize size =scroller.contentSize;
+    UIEdgeInsets inset = scroller.contentInset;
+    float yaxis = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height+50;
+    if(yaxis > h) {
+        scrollResult = YES;
+    }else{
+        scrollResult = NO;
+    }
+    
+    return scrollResult;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    initialContentOffset = scrollView.contentOffset;
+    didReadyLoadMore = NO;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+//    [[SettingDataClass instance] autoHideGlobal:scrollView navigationView:self.navigationController contentOffset:initialContentOffset];
+//    
+//    CGFloat offset = [self tableScrollOffset];
+//    
+//    if (offset >= 0.0f) {
+//        
+//        NSLog(@"Load More");
+//        UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//        loadMoreLbl.text = NSLocalizedString(@"browse_view_load_more", nil);
+//    }
+//    else if (offset <= 0 && offset >= -fixedHeight) {
+//        if([self detectEndofScroll])
+//        {
+//            
+//            NSLog(@"Release to refresh");
+//            UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//            loadMoreLbl.text = NSLocalizedString(@"browse_view_release_to_refresh", nil);
+//        }
+//        else
+//        {
+//            NSLog(@"Pull to refresh");
+//            UILabel *loadMoreLbl = [[MiscInstances instance] getLoadMoreUILabel];
+//            loadMoreLbl.text = NSLocalizedString(@"browse_view_pull_to_refresh", nil);
+//        }
+//    }
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (bottomEdge >= scrollView.contentSize.height && !didReadyLoadMore)
+    {
+        didReadyLoadMore = YES;
+        if(processing == NO)
+        {
+            if (!isLoadMore)
+            {
+                NSLog(@"Maximun page is reached");
+            }
+            else
+            {
+                currentPage += 1;
+                [self listMoreOrder];
+            }
+        }
+        else
+        {
+            NSLog(@"Still processing");
+            
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate {
+//
+//    if ([self detectEndofScroll]){
+//        
+//        NSLog(@"Now go to another page");
+//        
+//        if(processing == NO)
+//        {
+//            if (!isLoadMore)
+//            {
+//                NSLog(@"Maximun page is reached");
+//            }
+//            else
+//            {
+//                currentPage += 1;
+//                [self listMoreOrder];
+//            }
+//        }
+//        else
+//        {
+//            NSLog(@"Still processing");
+//            
+//        }
+//    }
 }
 
 @end

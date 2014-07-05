@@ -83,4 +83,5 @@ enum {
 #define CAMERA_LIST @"CameraList"
 
 //WooCommerce Product Per load @ Effect in BrowseDetailController
+#define NUMBER_ROW_PER_LOAD 6
 #define WOO_PRODUCT_PERPAGE @"10" //How much will load per query

@@ -86,7 +86,6 @@
                   initWithCustomView:payBtn];
     
     orderNotes = [UIButton buttonWithType:UIButtonTypeCustom];
-    orderNotes.frame = CGRectMake(self.view.frame.size.width - 69, 8, 63, 30);
     [orderNotes setTitleColor:APPLE_BLUE_COLOR forState:UIControlStateNormal];
     orderNotes.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [orderNotes setTitle:NSLocalizedString(@"orderViewController_order_notes_btn_title", nil) forState:UIControlStateNormal];
@@ -416,6 +415,54 @@
         NSString *productPrice;
         NSString *totalPrice;
         BOOL hasTax;
+        
+        //kiem tra co phai la item co' attribute hay ko? Neu phai, thi hien thi them ten attribute trong title
+        NSString *attributeValue = @"";
+        NSDictionary *attributeDict = (NSDictionary*)[product objectForKey:@"attributes"];
+        if (attributeDict != nil && [attributeDict count] > 0) {
+            NSArray *allValues = [attributeDict allValues];
+            for (int i=0;i < [allValues count];i++) {
+                NSString *attributeInfo = [allValues objectAtIndex:i];
+                if ([attributeInfo isEqualToString:@"binh-thuong"])
+                    attributeInfo = NSLocalizedString(@"detail_product_type_normal", nil);
+                else if ([attributeInfo isEqualToString:@"lon"])
+                    attributeInfo = NSLocalizedString(@"detail_product_type_large", nil);
+                else if ([attributeInfo isEqualToString:@"nho"])
+                    attributeInfo = NSLocalizedString(@"detail_product_type_small", nil);
+                else if ([attributeInfo isEqualToString:@"da-nang"])
+                    attributeInfo = NSLocalizedString(@"detail_product_place_da_nang", nil);
+                else if ([attributeInfo isEqualToString:@"ha-noi"])
+                    attributeInfo = NSLocalizedString(@"detail_product_place_ha_noi", nil);
+                else if ([attributeInfo isEqualToString:@"co-duong"])
+                    attributeInfo = NSLocalizedString(@"detail_product_co_duong", nil);
+                else if ([attributeInfo isEqualToString:@"khong-duong"])
+                    attributeInfo = NSLocalizedString(@"detail_product_khong_duong", nil);
+                else if ([attributeInfo isEqualToString:@"it-sua"])
+                    attributeInfo = NSLocalizedString(@"detail_product_it_sua", nil);
+                else if ([attributeInfo isEqualToString:@"nhieu-sua"])
+                    attributeInfo = NSLocalizedString(@"detail_product_it_sua", nil);
+                else if ([attributeInfo isEqualToString:@"nong"])
+                    attributeInfo = NSLocalizedString(@"detail_product_nong", nil);
+                else if ([attributeInfo isEqualToString:@"da"])
+                    attributeInfo = NSLocalizedString(@"detail_product_da", nil);
+                else if ([attributeInfo isEqualToString:@"khong-thach"])
+                    attributeInfo = NSLocalizedString(@"detail_product_khong_thach", nil);
+                else if ([attributeInfo isEqualToString:@"thach-cafe"])
+                    attributeInfo = NSLocalizedString(@"detail_product_thach_cafe", nil);
+                else if ([attributeInfo isEqualToString:@"thach-tra-xanh"])
+                    attributeInfo = NSLocalizedString(@"detail_product_thach_tra_xanh", nil);
+                else if ([attributeInfo isEqualToString:@"thach-socola"])
+                    attributeInfo = NSLocalizedString(@"detail_product_thach_socola", nil);
+                
+                if (attributeInfo != nil) {
+                    attributeValue = [attributeValue stringByAppendingFormat:@"%@,",attributeInfo];
+                }
+                
+                if (i == [allValues count]-1)
+                    attributeValue = [attributeValue substringToIndex:attributeValue.length-1];
+            }
+        }
+        
         if([[order objectForKey:@"tax_total"] floatValue] > 0)
         {
             if([[order objectForKey:@"display-price-during-cart-checkout"] isEqualToString:@"incl"])
@@ -442,7 +489,7 @@
         }
         [self
          cartItem:[[product objectForKey:@"product_info"] objectForKey:@"featuredImages"]
-         productTitle:[[product objectForKey:@"product_info"] objectForKey:@"productName"]
+         productTitle:[NSString stringWithFormat:@"(%@) %@",attributeValue,[[product objectForKey:@"product_info"] objectForKey:@"productName"]]
          currency: [[SettingDataClass instance] getCurrencySymbol]
          price:productPrice
          quantity:[product objectForKey:@"quantity"]
@@ -450,10 +497,6 @@
          has_tax:hasTax
          productID:[product objectForKey:@"product_id"]
          ];
-        
-        
-        
-        
     }
     
     NSArray *couponArray = [[[MyOrderClass instance] getMyOrder] objectForKey:@"used_coupon"];

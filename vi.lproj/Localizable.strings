@@ -142,3 +142,19 @@
 "settingViewController.title" = "Cài đặt";
 "settingViewController.products" = "Sản phẩm";
 "settingViewController.categories" = "Danh mục";
+
+"detail_product_type_small"  = "Nhỏ";
+"detail_product_type_normal" = "Bình thường";
+"detail_product_type_large"  = "Lớn";
+"detail_product_place_da_nang" = "Đà Nẵng";
+"detail_product_place_ha_noi"  = "Hà Nội";
+"detail_product_co_duong" = "Có đường";
+"detail_product_khong_duong" = "Không đường";
+"detail_product_it_sua" = "Ít sữa";
+"detail_product_nhieu_sua" = "Nhiều sữa";
+"detail_product_nong" = "Nóng";
+"detail_product_da" = "Đá";
+"detail_product_khong_thach" = "Không thạch";
+"detail_product_thach_cafe"  = "Thạch cafe";
+"detail_product_thach_tra_xanh" = "Thạch trà xanh";
+"detail_product_thach_socola" = "Thạch socola";
